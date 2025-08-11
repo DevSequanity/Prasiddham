@@ -1,0 +1,79 @@
+---
+// Team Section Component
+
+// Use a single gradient, accentColor, and hoverColor for all team members
+const commonGradient = "from-amber-100 to-orange-200";
+const commonAccentColor = "text-amber-600";
+const commonHoverColor = "bg-amber-600";
+
+const teamMembers = [
+  {
+    name: "Sarah Johnson",
+    position: "Principal Designer & Founder",
+    description: "Visionary interior designer with 15+ years of experience creating stunning residential and commercial spaces that inspire and delight.",
+    image: "https://i.pravatar.cc/400?img=1"
+  },
+  {
+    name: "Michael Chen",
+    position: "Senior Interior Designer",
+    description: "Expert in modern minimalist design and sustainable materials, specializing in creating functional spaces that maximize both beauty and efficiency.",
+    image: "https://i.pravatar.cc/400?img=2"
+  },
+  {
+    name: "Emily Rodriguez",
+    position: "Creative Director",
+    description: "Passionate about color theory and spatial design, creating unique interiors that reflect each client's personality and lifestyle.",
+    image: "https://i.pravatar.cc/400?img=3"
+  },
+  {
+    name: "David Thompson",
+    position: "Project Manager",
+    description: "Experienced project manager ensuring seamless coordination between design, contractors, and clients for flawless project delivery.",
+    image: "https://i.pravatar.cc/400?img=4"
+  },{
+    name:"Shyam Raval",
+    position:"Prime Maverick",
+    description:"DestructionProminent",
+    image:"https://dineshraval.tech/old-toss/faviconnnnnn.gif"
+  }
+];
+---
+
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Meet Our Design Team
+      </h2>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        The talented designers and professionals who bring your interior design vision to life with creativity and expertise.
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      {teamMembers.map((member) => (
+        <div class="text-center group">
+          <div class="relative mb-6">
+            <div class={`w-48 h-48 mx-auto bg-gradient-to-br ${commonGradient} rounded-full flex items-center justify-center overflow-hidden`}>
+              <img 
+                src={member.image} 
+                alt={`${member.name} - ${member.position}`}
+                class="w-full h-full object-cover"
+                loading="lazy"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div class="w-full h-full bg-gray-200 flex items-center justify-center" style="display: none;">
+                <span class="text-gray-500 text-sm text-center px-2">{member.name}</span>
+              </div>
+            </div>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">{member.name}</h3>
+          <p class={`${commonAccentColor} font-medium mb-3`}>{member.position}</p>
+          <p class="text-gray-600 text-sm">
+            {member.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

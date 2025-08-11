@@ -1,0 +1,471 @@
+---
+// Project Showcase Component - J Design Studio Style
+const projects = [
+  {
+  id: 1,
+  title: "Modern Living Room Transformation",
+  subtitle: "From Concept to Reality",
+  description: "A complete transformation of a 2,500 sq ft living space, blending contemporary aesthetics with functional design principles.",
+  images: [
+    "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80"
+  ],
+    category: "Residential",
+    tags: ["Living Room", "Modern", "Contemporary", "Furniture"],
+    stats: [
+      { label: "Project Duration", value: "8 Weeks" },
+      { label: "Space Size", value: "2,500 sq ft" },
+      { label: "Budget Range", value: "₹15-20 Lakhs" }
+    ],
+    features: [
+      "Custom furniture design",
+      "Smart lighting integration",
+      "Sustainable materials",
+      "Multi-functional spaces"
+    ]
+  },
+  {
+  id: 2,
+  title: "Luxury Master Bedroom Suite",
+  subtitle: "Elegance Meets Comfort",
+  description: "A sophisticated master bedroom transformation featuring premium materials and bespoke design elements.",
+  images: [
+    "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=800&q=80"
+  ],
+    category: "Residential",
+    tags: ["Bedroom", "Luxury", "Premium", "Wardrobe"],
+    stats: [
+      { label: "Project Duration", value: "6 Weeks" },
+      { label: "Space Size", value: "800 sq ft" },
+      { label: "Budget Range", value: "₹8-12 Lakhs" }
+    ],
+    features: [
+      "Walk-in wardrobe design",
+      "En-suite bathroom",
+      "Premium textiles",
+      "Ambient lighting system"
+    ]
+  },
+  {
+  id: 3,
+  title: "Contemporary Office Space",
+  subtitle: "Productivity Through Design",
+  description: "A modern office transformation that enhances productivity while maintaining a welcoming atmosphere.",
+  images: [
+    "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80"
+  ],
+    category: "Commercial",
+    tags: ["Office", "Commercial", "Productivity", "Modern"],
+    stats: [
+      { label: "Project Duration", value: "12 Weeks" },
+      { label: "Space Size", value: "5,000 sq ft" },
+      { label: "Budget Range", value: "₹25-35 Lakhs" }
+    ],
+    features: [
+      "Open plan layout",
+      "Collaborative zones",
+      "Ergonomic furniture",
+      "Natural light optimization"
+    ]
+  },
+  {
+  id: 4,
+  title: "Kitchen & Dining Renovation",
+  subtitle: "Culinary Excellence",
+  description: "A complete kitchen and dining area renovation that combines functionality with modern aesthetics.",
+  images: [
+    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80"
+  ],
+    category: "Residential",
+    tags: ["Kitchen", "Dining", "Renovation", "Functional"],
+    stats: [
+      { label: "Project Duration", value: "10 Weeks" },
+      { label: "Space Size", value: "1,200 sq ft" },
+      { label: "Budget Range", value: "₹18-25 Lakhs" }
+    ],
+    features: [
+      "Custom cabinetry",
+      "Island counter design",
+      "Smart appliances",
+      "Breakfast nook"
+    ]
+  }
+];
+
+// Get all unique categories and tags
+const categories = [...new Set(projects.map(p => p.category))];
+const allTags = [...new Set(projects.flatMap(p => p.tags))];
+---
+
+<section class="py-20 bg-gradient-to-br from-gray-50 to-white" id="project-showcase">
+  <div class="container mx-auto px-4">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        Our Featured Projects
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Discover how we transform spaces from concept to reality with our innovative design solutions
+      </p>
+    </div>
+
+    <!-- Filter Controls -->
+    <div class="mb-12">
+      <!-- Category Filter -->
+      <div class="flex flex-wrap justify-center gap-4 mb-8">
+        <button 
+          class="filter-btn category-btn px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 hover:bg-amber-500 hover:text-white bg-amber-500 text-white"
+          data-category="all"
+        >
+          All Projects
+        </button>
+        {categories.map((category) => (
+          <button 
+            class="filter-btn category-btn px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 hover:bg-amber-500 hover:text-white bg-white text-gray-700 border border-gray-200"
+            data-category={category}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+
+      <!-- Tag Filter -->
+      <div class="flex flex-wrap justify-center gap-2">
+        {allTags.map((tag) => (
+          <button 
+            class="filter-btn tag-btn px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 hover:bg-amber-100 hover:text-amber-800 bg-gray-100 text-gray-600"
+            data-tag={tag}
+          >
+            #{tag}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto">
+      <!-- Projects Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16" id="projects-grid">
+        {projects.map((project) => (
+          <div 
+            class="project-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:-translate-y-1"
+            data-category={project.category}
+            data-tags={project.tags.join(',')}
+            data-project-id={project.id}
+          >
+            <div class="relative h-64">
+              <img 
+                src={project.images[0]}
+                alt={project.title}
+                class="w-full h-full object-cover"
+              />
+              <div class="absolute top-4 left-4">
+                <span class="bg-amber-500 text-white text-xs font-medium px-3 py-1 rounded-full">
+                  {project.category}
+                </span>
+              </div>
+              <div class="absolute top-4 right-4">
+                <button class="view-project-btn bg-white/90 backdrop-blur-sm text-gray-800 p-2 rounded-full hover:bg-white transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="p-6">
+              <h4 class="text-xl font-bold text-gray-900 mb-2">{project.title}</h4>
+              <p class="text-gray-600 mb-4">{project.description.substring(0, 100)}...</p>
+              
+              <!-- Tags -->
+              <div class="flex flex-wrap gap-2 mb-4">
+                {project.tags.map((tag) => (
+                  <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+              
+              <div class="flex justify-between text-sm text-gray-500">
+                <span>{project.stats[1].value}</span>
+                <span>{project.stats[0].value}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Project Modal -->
+      <div id="project-modal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-2 md:p-6">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-3xl md:max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-gray-200">
+          <div class="p-4 md:p-8 lg:p-10">
+            <!-- Modal Header -->
+            <div class="flex justify-between items-start mb-6 md:mb-8">
+              <div>
+                <span id="modal-category" class="inline-block bg-amber-100 text-amber-800 text-xs md:text-sm font-medium px-3 py-1 md:px-4 md:py-2 rounded-full mb-2 md:mb-4">
+                </span>
+                <h3 id="modal-title" class="text-2xl md:text-3xl font-bold text-gray-900 mb-2 md:mb-4">
+                </h3>
+                <p id="modal-subtitle" class="text-base md:text-lg text-gray-600">
+                </p>
+              </div>
+              <button id="close-modal" class="text-gray-400 hover:text-gray-600 transition-colors ml-2 md:ml-4">
+                <svg class="w-7 h-7 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Project Images Gallery -->
+            <div class="flex justify-center mb-8 md:mb-10">
+              <div id="modal-images-gallery" class="flex gap-3 md:gap-5 overflow-x-auto pb-2">
+                <!-- Images will be injected here -->
+              </div>
+            </div>
+
+            <!-- Project Details -->
+            <div class="bg-gray-50 rounded-2xl p-4 md:p-6 lg:p-8">
+              <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6">Key Features</h3>
+              <div id="modal-features" class="grid md:grid-cols-2 gap-3 md:gap-4">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Call to Action -->
+      <div class="text-center">
+        <div class="bg-gradient-to-r from-amber-500 to-orange-500 rounded-2xl p-8 lg:p-12">
+          <h3 class="text-3xl lg:text-4xl font-bold text-white mb-4">
+            Ready to Transform Your Space?
+          </h3>
+          <p class="text-xl text-amber-100 mb-8 max-w-2xl mx-auto">
+            Let's create something extraordinary together. Book a consultation and start your design journey today.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <button class="bg-white text-amber-600 font-bold py-4 px-8 rounded-lg hover:bg-gray-100 transition-colors duration-200">
+              Book Consultation
+            </button>
+            <button class="border-2 border-white text-white font-bold py-4 px-8 rounded-lg hover:bg-white hover:text-amber-600 transition-colors duration-200">
+              View Portfolio
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ projects }}>
+  // Project data
+  const projectsData = projects;
+  
+  // DOM elements
+  const projectGrid = document.getElementById('projects-grid');
+  const projectModal = document.getElementById('project-modal');
+  const closeModal = document.getElementById('close-modal');
+  const categoryBtns = document.querySelectorAll('.category-btn');
+  const tagBtns = document.querySelectorAll('.tag-btn');
+  const projectCards = document.querySelectorAll('.project-card');
+  const viewProjectBtns = document.querySelectorAll('.view-project-btn');
+
+  // Filter state
+  let currentCategory = 'all';
+  let currentTags = [];
+
+  // Initialize
+  function init() {
+    setupEventListeners();
+    setupFiltering();
+  }
+
+  // Setup event listeners
+  function setupEventListeners() {
+    // Category filter
+    categoryBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const category = btn.dataset.category;
+        setActiveCategory(category);
+        filterProjects();
+      });
+    });
+
+    // Tag filter
+    tagBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tag = btn.dataset.tag;
+        toggleTag(tag);
+        filterProjects();
+      });
+    });
+
+    // Project card clicks
+    projectCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const projectId = parseInt(card.dataset.projectId);
+        openProjectModal(projectId);
+      });
+    });
+
+    // View project button clicks
+    viewProjectBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const card = btn.closest('.project-card');
+        const projectId = parseInt(card.dataset.projectId);
+        openProjectModal(projectId);
+      });
+    });
+
+    // Close modal
+    closeModal.addEventListener('click', closeProjectModal);
+    projectModal.addEventListener('click', (e) => {
+      if (e.target === projectModal) {
+        closeProjectModal();
+      }
+    });
+
+    // Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeProjectModal();
+      }
+    });
+  }
+
+  // Set active category
+  function setActiveCategory(category) {
+    currentCategory = category;
+    
+    categoryBtns.forEach(btn => {
+      if (btn.dataset.category === category) {
+        btn.classList.add('bg-amber-500', 'text-white');
+        btn.classList.remove('bg-white', 'text-gray-700', 'border', 'border-gray-200');
+      } else {
+        btn.classList.remove('bg-amber-500', 'text-white');
+        btn.classList.add('bg-white', 'text-gray-700', 'border', 'border-gray-200');
+      }
+    });
+  }
+
+  // Toggle tag
+  function toggleTag(tag) {
+    const index = currentTags.indexOf(tag);
+    if (index > -1) {
+      currentTags.splice(index, 1);
+    } else {
+      currentTags.push(tag);
+    }
+    
+    tagBtns.forEach(btn => {
+      if (btn.dataset.tag === tag) {
+        if (currentTags.includes(tag)) {
+          btn.classList.add('bg-amber-500', 'text-white');
+          btn.classList.remove('bg-gray-100', 'text-gray-600');
+        } else {
+          btn.classList.remove('bg-amber-500', 'text-white');
+          btn.classList.add('bg-gray-100', 'text-gray-600');
+        }
+      }
+    });
+  }
+
+  // Filter projects
+  function filterProjects() {
+    projectCards.forEach(card => {
+      const category = card.dataset.category;
+      const tags = card.dataset.tags.split(',');
+      
+      let showCard = true;
+      
+      // Category filter
+      if (currentCategory !== 'all' && category !== currentCategory) {
+        showCard = false;
+      }
+      
+      // Tag filter
+      if (currentTags.length > 0) {
+        const hasMatchingTag = currentTags.some(tag => tags.includes(tag));
+        if (!hasMatchingTag) {
+          showCard = false;
+        }
+      }
+      
+      // Show/hide card
+      if (showCard) {
+        card.style.display = 'block';
+        card.classList.add('animate-fade-in');
+      } else {
+        card.style.display = 'none';
+        card.classList.remove('animate-fade-in');
+      }
+    });
+  }
+
+  // Open project modal
+  function openProjectModal(projectId) {
+    const project = projectsData.find(p => p.id === projectId);
+    if (!project) return;
+    
+    // Populate modal content
+  document.getElementById('modal-category').textContent = project.category;
+  document.getElementById('modal-title').textContent = project.title;
+  document.getElementById('modal-subtitle').textContent = project.description;
+  // Render all images in the gallery
+  const gallery = document.getElementById('modal-images-gallery');
+  gallery.innerHTML = project.images.map(img => `
+    <div class=\"relative group min-w-[220px] md:min-w-[300px] h-60 md:h-80 rounded-xl md:rounded-2xl overflow-hidden shadow-lg md:shadow-xl border border-gray-100\">
+      <img src=\"${img}\" alt=\"${project.title}\" class=\"w-full h-full object-cover transition-transform duration-500 group-hover:scale-105\" />
+      <div class=\"absolute inset-0 bg-gradient-to-t from-black/30 to-transparent\"></div>
+    </div>
+  `).join('');
+    
+    // Populate features
+    const featuresContainer = document.getElementById('modal-features');
+    featuresContainer.innerHTML = project.features.map(feature => `
+      <div class="flex items-center space-x-3">
+        <div class="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+          <svg class="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+          </svg>
+        </div>
+        <span class="text-gray-700 font-medium">${feature}</span>
+      </div>
+    `).join('');
+    
+    // Show modal
+    projectModal.classList.remove('hidden');
+    projectModal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Close project modal
+  function closeProjectModal() {
+    projectModal.classList.add('hidden');
+    projectModal.classList.remove('flex');
+    document.body.style.overflow = 'auto';
+  }
+
+  // Initialize when DOM is loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+</script>
+
+<style>
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

@@ -1,0 +1,74 @@
+---
+// Values Section Component
+const values = [
+  {
+    title: "Creativity",
+    description: "We approach each project with fresh eyes and innovative thinking, creating unique designs that reflect your personality while pushing creative boundaries.",
+    icon: `<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>`,
+    bgColor: "bg-amber-100",
+    iconColor: "text-orange-600"
+  },
+  {
+    title: "Functionality",
+    description: "Every design decision serves a purpose. We create spaces that not only look stunning but also enhance your daily life and work seamlessly.",
+    icon: `<path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path>`,
+    bgColor: "bg-amber-100",
+    iconColor: "text-orange-600"
+  },
+  {
+    title: "Collaboration",
+    description: "We work closely with you throughout the entire process, ensuring your vision is realized while bringing our expertise to create something extraordinary.",
+    icon: `<path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"></path>`,
+    bgColor: "bg-amber-100",
+    iconColor: "text-orange-600"
+  },
+  {
+    title: "Transparency",
+    description: "We maintain clear communication about timelines, budgets, and design decisions, keeping you informed and confident throughout the project.",
+    icon: `<path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>`,
+    bgColor: "bg-amber-100",
+    iconColor: "text-orange-600"
+  },
+  {
+    title: "Quality",
+    description: "We source the finest materials and work with skilled craftsmen to ensure every detail meets our high standards for beauty and durability.",
+    icon: `<path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>`,
+    bgColor: "bg-amber-100",
+    iconColor: "text-orange-600"
+  },
+  {
+    title: "Sustainability",
+    description: "We prioritize eco-friendly materials and sustainable design practices, creating beautiful spaces that are kind to both you and the environment.",
+    icon: `<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>`,
+    bgColor: "bg-amber-100",
+    iconColor: "text-orange-600"
+  }
+];
+---
+
+<section class="py-20 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Our Design Philosophy
+      </h2>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        These core principles guide our approach to creating beautiful, functional spaces that inspire and delight.
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {values.map((value) => (
+        <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200">
+          <div class={`w-12 h-12 ${value.bgColor} rounded-lg flex items-center justify-center mb-6`}>
+            <svg class={`w-6 h-6 ${value.iconColor}`} fill="currentColor" viewBox="0 0 20 20" set:html={value.icon}></svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">{value.title}</h3>
+          <p class="text-gray-600">
+            {value.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

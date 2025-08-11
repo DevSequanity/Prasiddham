@@ -1,0 +1,207 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+
+// Footer data objects
+const footerData = {
+  company: {
+    name: "Prasiddham",
+    description: "As an Interior designer in Ahmedabad, we craft innovative, reliable, and sustainable spaces that stand the test of time, ensuring excellence in every project.",
+    logo: logo
+  },
+  socialLinks: [
+    {
+      name: "Facebook",
+      url: "https://www.facebook.com/prasiddham",
+      icon: "M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.326 24H12.82v-9.294H9.692V11.01h3.127V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.696h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0"
+    },
+    {
+      name: "Instagram",
+      url: "https://www.instagram.com/prasiddham",
+      icon: "M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.241 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.974-2.241 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.974-.974-1.246-2.241-1.308-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608.974-.974 2.241-1.246 3.608-1.308C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.775.13 4.602.402 3.635 1.37 2.668 2.337 2.396 3.51 2.338 4.788 2.279 6.068 2.267 6.477 2.267 12c0 5.523.012 5.932.071 7.212.058 1.278.33 2.451 1.297 3.418.967.967 2.14 1.239 3.418 1.297C8.332 23.987 8.741 24 12 24s3.668-.013 4.948-.072c1.278-.058 2.451-.33 3.418-1.297.967-.967 1.239-2.14 1.297-3.418.059-1.28.071-1.689.071-7.212 0-5.523-.012-5.932-.071-7.212-.058-1.278-.33-2.451-1.297-3.418C19.399.402 18.226.13 16.948.072 15.668.013 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"
+    },
+    {
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/company/prasiddham",
+      icon: "M20.447 20.452h-3.554v-5.569c0-1.327-.027-3.037-1.849-3.037-1.851 0-2.132 1.445-2.132 2.939v5.667H9.358V9h3.414v1.561h.049c.476-.899 1.637-1.849 3.37-1.849 3.602 0 4.267 2.368 4.267 5.455v6.285zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zm1.777 13.019H3.56V9h3.554v11.452zM22.225 0H1.771C.792 0 0 .771 0 1.723v20.549C0 23.229.792 24 1.771 24h20.451C23.2 24 24 23.229 24 22.271V1.723C24 .771 23.2 0 22.225 0z"
+    }
+  ],
+  quickLinks: [
+    {
+      name: "Home",
+      url: "/",
+      icon: "M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+    },
+    {
+      name: "About",
+      url: "/about",
+      icon: "M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+    },
+    {
+      name: "Services",
+      url: "/services",
+      icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+    },
+    {
+      name: "Contact",
+      url: "/contact",
+      icon: "M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+    },
+    {
+      name: "Blog",
+      url: "/blog",
+      icon: "M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
+    },
+    {
+      name: "Gallery",
+      url: "/gallery",
+      icon: "M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
+    }
+  ],
+  contactInfo: [
+    {
+      type: "phone",
+      value: "+91 12345 67890",
+      href: "tel:+911234567890",
+      icon: "M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+    },
+    {
+      type: "email",
+      value: "info@prasiddham.com",
+      href: "mailto:info@prasiddham.com",
+      icon: "M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+    },
+    {
+      type: "address",
+      value: "123, Design Street, Ahmedabad, Gujarat, India",
+      icon: "M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+    },
+    {
+      type: "hours",
+      value: "Mon - Sat 10:00 AM to 6:00 PM, Sunday Closed",
+      icon: "M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+    }
+  ],
+  mapConfig: {
+    embedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235013.74842470885!2d72.41493353511378!3d23.02047434698202!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848aba5bd449%3A0x4fcedd11614f6516!2sAhmedabad%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1647886543567!5m2!1sen!2sin",
+    title: "Prasiddham Office Location"
+  },
+  copyright: {
+    year: new Date().getFullYear(),
+    text: "All rights reserved. | Designed with ❤ in Ahmedabad"
+  }
+};
+---
+
+<footer class="bg-gray-800 text-gray-200">
+  <div class="max-w-7xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
+
+    <!-- Grid container: mobile-first stacks, becomes 4 cols on md+ -->
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-4 md:items-start">
+
+      <!-- Company block (full width on mobile, col 1 on desktop) -->
+      <div class="order-1">
+        <div class="flex items-center gap-3">
+          <Image src={footerData.company.logo} alt={footerData.company.name} class="h-12 w-auto" />
+          <div>
+            <h4 class="text-lg font-semibold text-gray-100">{footerData.company.name}</h4>
+            <p class="text-xs text-amber-200">Interior Design • Ahmedabad</p>
+          </div>
+        </div>
+
+        <p class="mt-4 text-sm leading-relaxed text-gray-300">
+          {footerData.company.description}
+        </p>
+
+        <!-- Social icons: subtle hint of orange/amber -->
+        <div class="flex items-center mt-4 space-x-3">
+          {footerData.socialLinks.map((link) => (
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center p-2 rounded-full bg-gray-700 hover:bg-orange-500/30 focus:bg-orange-500/40 transition"
+              aria-label={link.name}
+            >
+              <svg class="w-5 h-5 text-amber-200 group-hover:text-orange-400 transition-colors" viewBox="0 0 24 24" role="img" aria-hidden="true">
+                <path d={link.icon} fill="currentColor" />
+              </svg>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Quick links: mobile = matrix (2 columns), desktop = vertical list -->
+      <div class="order-2">
+        <h3 class="text-lg font-semibold text-gray-100 mb-3">Quick Links</h3>
+
+        <!-- mobile: grid; md: vertical list -->
+        <ul class="grid grid-cols-2 gap-2 md:block md:space-y-2">
+          {footerData.quickLinks.map((link) => (
+            <li>
+              <a
+                href={link.url}
+                class="flex items-center gap-3 p-2 rounded-md hover:bg-gray-700 transition"
+              >
+                <span class="inline-flex items-center justify-center w-9 h-9 rounded-md bg-gray-700 group-hover:bg-orange-500/20 transition">
+                  <svg class="w-4 h-4 text-amber-200 group-hover:text-orange-400 transition-colors" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d={link.icon} fill="currentColor" />
+                  </svg>
+                </span>
+                <span class="text-sm text-gray-200">{link.name}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact info -->
+      <div class="order-3">
+        <h3 class="text-lg font-semibold text-gray-100 mb-3">Contact Us</h3>
+        <ul class="space-y-3">
+          {footerData.contactInfo.map((item) => (
+            <li class="flex items-start gap-3">
+              <span class="inline-flex items-center justify-center w-9 h-9 rounded-md bg-gray-700 group-hover:bg-orange-500/20 transition flex-shrink-0">
+                <svg class="w-4 h-4 text-amber-200 group-hover:text-orange-400 transition-colors" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d={item.icon} fill="currentColor" />
+                </svg>
+              </span>
+
+              <div class="text-sm">
+                {item.href ? (
+                  <a href={item.href} class="hover:underline text-gray-200">
+                    {item.value}
+                  </a>
+                ) : (
+                  <span class="text-gray-200">{item.value}</span>
+                )}
+                <div class="text-xs text-gray-400 mt-0.5">{item.type}</div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Map (mobile full width below, desktop as right-most column) -->
+      <div class="order-4">
+        <h3 class="text-lg font-semibold text-gray-100 mb-3">Find Us</h3>
+        <div class="rounded-lg overflow-hidden border-2 border-gray-700">
+          <iframe
+            src={footerData.mapConfig.embedUrl}
+            title={footerData.mapConfig.title}
+            class="w-full h-100 sm:h-40 md:h-40"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- divider + copyright -->
+    <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm">
+      <p class="text-gray-400">
+        &copy; {footerData.copyright.year} {footerData.company.name}. {footerData.copyright.text}
+      </p>
+    </div>
+  </div>
+</footer>

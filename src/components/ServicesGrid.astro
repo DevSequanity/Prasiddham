@@ -1,0 +1,152 @@
+---
+import ServiceCard from "./ServiceCard.astro";
+
+const services = [
+  {
+    title: "Interior Design Consultation",
+    description:
+      "Expert consultation to understand your vision and create a personalized design strategy.",
+    icon: '<svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>',
+    features: [
+      "Initial consultation and space analysis",
+      "Design concept development",
+      "Color palette and material selection",
+      "Furniture and decor recommendations",
+      "Budget planning and timeline",
+    ],
+    price: "From ₹12,500",
+    duration: "per session",
+    isPopular: false,
+  },
+  {
+    title: "Full Interior Design",
+    description:
+      "Complete interior design service from concept to final installation.",
+    icon: '<svg fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>',
+    features: [
+      "Comprehensive space planning",
+      "Custom furniture design",
+      "Lighting and electrical planning",
+      "Material and finish selection",
+      "Project management and coordination",
+      "Installation and styling",
+    ],
+    price: "From ₹4,15,000",
+    duration: "per room",
+    isPopular: true,
+  },
+  {
+    title: "Kitchen & Bath Design",
+    description:
+      "Specialized design services for kitchens and bathrooms with modern functionality.",
+    icon: '<svg fill="currentColor" viewBox="0 0 24 24"><path d="M8 2h8c1.1 0 2 .9 2 2v16c0 1.1-.9 2-2 2H8c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2zm0 2v16h8V4H8zm2 2h4v2h-4V6zm0 4h4v2h-4v-2zm0 4h4v2h-4v-2z"/></svg>',
+    features: [
+      "Custom cabinetry design",
+      "Appliance integration",
+      "Plumbing and electrical layout",
+      "Tile and countertop selection",
+      "Storage optimization",
+      "Professional installation",
+    ],
+    price: "From ₹6,60,000",
+    duration: "per space",
+    isPopular: false,
+  },
+  {
+    title: "Commercial Interior Design",
+    description:
+      "Professional interior design for offices, retail spaces, and commercial properties.",
+    icon: '<svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10z"/></svg>',
+    features: [
+      "Space planning and layout",
+      "Brand integration",
+      "Ergonomic furniture selection",
+      "Lighting and acoustics",
+      "Compliance and safety standards",
+      "Project coordination",
+    ],
+    price: "From ₹12,40,000",
+    duration: "per project",
+    isPopular: false,
+  },
+  {
+    title: "Renovation & Remodeling",
+    description:
+      "Complete renovation services with design expertise and construction management.",
+    icon: '<svg fill="currentColor" viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>',
+    features: [
+      "Structural assessment",
+      "Design and planning",
+      "Permit coordination",
+      "Contractor management",
+      "Quality control",
+      "Final inspection",
+    ],
+    price: "From ₹20,60,000",
+    duration: "per project",
+    isPopular: false,
+  },
+  {
+    title: "Virtual Design Services",
+    description:
+      "Remote interior design services with 3D visualization and digital consultations.",
+    icon: '<svg fill="currentColor" viewBox="0 0 24 24"><path d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7l-2 3v1h8v-1l-2-3h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 12H3V4h18v10z"/></svg>',
+    features: [
+      "Virtual consultations",
+      "3D room visualization",
+      "Digital mood boards",
+      "Online shopping lists",
+      "Video walkthroughs",
+      "Email support",
+    ],
+    price: "From ₹41,000",
+    duration: "per room",
+    isPopular: false,
+  },
+];
+---
+
+<section id="services" class="py-20 bg-amber-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-orange-700 mb-6">
+        Our Interior Design Services
+      </h2>
+      <p class="text-xl text-orange-600 max-w-3xl mx-auto leading-relaxed">
+        From initial consultation to final installation, we offer comprehensive
+        interior design services tailored to your unique style and requirements.
+      </p>
+    </div>
+
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+    >
+      {services.map((service) => <ServiceCard {...service} />)}
+    </div>
+
+    <div class="text-center mt-16">
+      <p class="text-orange-600 mb-6">
+        Don't see exactly what you're looking for? Let's create a custom
+        solution for your project.
+      </p>
+      <a
+        href="/contact"
+        class="inline-flex items-center bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
+      >
+        Schedule Free Consultation
+        <svg
+          class="w-5 h-5 ml-2"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

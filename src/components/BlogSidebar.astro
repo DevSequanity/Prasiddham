@@ -1,0 +1,97 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BlogCard from "./BlogCard.astro";
+
+export interface Props {
+  currentPost: CollectionEntry<"blog">;
+  allPosts: CollectionEntry<"blog">[];
+}
+
+const { currentPost, allPosts } = Astro.props;
+
+// Get related posts (same tags, excluding current post)
+const relatedPosts = allPosts
+  .filter(post => post.slug !== currentPost.slug)
+  .filter(post => 
+    post.data.tags.some(tag => currentPost.data.tags.includes(tag))
+  )
+  .slice(0, 3);
+
+// Get recent posts
+const recentPosts = allPosts
+  .filter(post => post.slug !== currentPost.slug)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 5);
+
+// Get all unique tags
+const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))];
+---
+
+<aside class="space-y-8">
+  
+
+  <!-- Related Posts -->
+  {relatedPosts.length > 0 && (
+    <div class="bg-white rounded-xl p-6 shadow-lg">
+      <h3 class="text-lg font-bold text-gray-900 mb-4">Related Posts</h3>
+      <div class="space-y-4">
+        {relatedPosts.map((post) => (
+          <div class="border-b border-gray-100 pb-4 last:border-b-0">
+            <a 
+              href={`/blog/${post.slug}`}
+              class="block hover:text-orange-600 transition-colors duration-300"
+            >
+              <h4 class="font-semibold text-gray-900 mb-1 line-clamp-2">
+                {post.data.title}
+              </h4>
+              <p class="text-sm text-gray-500">
+                {new Date(post.data.pubDate).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric'
+                })}
+              </p>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <!-- Recent Posts -->
+  <div class="bg-white rounded-xl p-6 shadow-lg">
+    <h3 class="text-lg font-bold text-gray-900 mb-4">Recent Posts</h3>
+    <div class="space-y-4">
+      {recentPosts.map((post) => (
+        <div class="border-b border-gray-100 pb-4 last:border-b-0">
+          <a 
+            href={`/blog/${post.slug}`}
+            class="block hover:text-orange-600 transition-colors duration-300"
+          >
+            <h4 class="font-semibold text-gray-900 mb-1 line-clamp-2">
+              {post.data.title}
+            </h4>
+            <p class="text-sm text-gray-500">
+              {new Date(post.data.pubDate).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+              })}
+            </p>
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+
+</aside>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
+

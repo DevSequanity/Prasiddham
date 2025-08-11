@@ -1,0 +1,34 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import { Image } from "astro:assets";
+import heroImage from "../images/home.jpg";
+
+import HeroSection from "./../components/HeroSection.astro";
+
+import Accordion from "../components/Accordion.astro";
+
+import Testimonial1 from "../components/testimonial1.astro";
+import ServicesGrid from "../components/ServicesGrid.astro";
+---
+
+<Layout>
+  <div>
+    <HeroSection
+      title="Transform Your Space with Prasiddham"
+      subtitle="Award-winning interior design, tailored to your lifestyle. Experience the perfect blend of creativity, quality, and care."
+      image={heroImage}
+    >
+      <a
+        slot="cta"
+        href="/contact"
+        class="inline-block bg-gradient-to-r from-amber-500 to-orange-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold px-8 py-4 rounded-lg shadow-lg transition-all duration-300"
+      >
+        Get Free Consultation
+      </a>
+    </HeroSection>
+    
+  <ServicesGrid />
+      <Testimonial1 />
+  </div>
+</Layout>
