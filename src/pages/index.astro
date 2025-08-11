@@ -1,35 +1,198 @@
 ---
 import Layout from "../layouts/Layout.astro";
-
 import { Image } from "astro:assets";
 
 import heroImage from "./../images/home.JPG";
 
-import HeroSection from "./../components/HeroSection.astro";
-
-import Accordion from "../components/Accordion.astro";
-
-import Testimonial1 from "../components/testimonial1.astro";
 import ServicesGrid from "../components/ServicesGrid.astro";
+import Testimonial1 from "../components/testimonial1.astro";
 ---
 
 <Layout>
-  <div>
-    <HeroSection
-      title="Transform Your Space with Prasiddham"
-      subtitle="Award-winning interior design, tailored to your lifestyle. Experience the perfect blend of creativity, quality, and care."
-      image={heroImage}
-    >
+  <!-- Hero Section -->
+  <section class="relative w-full h-[80vh] flex items-center justify-center overflow-hidden">
+    <!-- Background image with filter -->
+    <div class="absolute inset-0">
+      <Image 
+        src={heroImage} 
+        alt="Hero Image" 
+        class="w-full h-full object-cover filter brightness-45" 
+      />
+    </div>
+
+    <!-- Overlay content -->
+    <div class="relative z-10 text-center text-white px-4">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4">
+        Transform Your Space with Prasiddham
+      </h1>
+      <p class="text-lg md:text-xl mb-8">
+        Award-winning interior design, tailored to your lifestyle. Experience the perfect blend of creativity, quality, and care.
+      </p>
       <a
-        slot="cta"
         href="/contact"
         class="inline-block bg-gradient-to-r from-amber-500 to-orange-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold px-8 py-4 rounded-lg shadow-lg transition-all duration-300"
       >
         Get Free Consultation
       </a>
-    </HeroSection>
-    
+    </div>
+  </section>
+
+  <!-- Rest of page -->
   <ServicesGrid />
-      <Testimonial1 />
+  <Testimonial1 />
+  
+<!-- Introduction Section -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto flex flex-col md:flex-row items-center gap-8 px-4">
+    <div class="md:w-1/2">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Living Room" class="rounded-lg shadow-lg w-full" />
+    </div>
+    <div class="md:w-1/2">
+      <h2 class="text-3xl font-bold mb-4">Best Home Interior Designers In Ahmedabad</h2>
+      <p class="text-gray-700 mb-4">Prasiddham is the top home interior designer in Ahmedabad. Our unique creations, meticulous attention to detail, and cutting-edge innovation elevate every project we take on. As your experienced team, we help you turn your home into a haven, a perfect extension of your taste that reflects your dreams and aspirations. We handle everything with pride and accuracy, and infuse it with a touch of magic.</p>
+      <p class="text-gray-700">Our process is client-focused, with full project management, transparent pricing, and great client feedback. Trust us to turn your imagination into a spectacular reality, from concept to completion. Let’s create something extraordinary together.</p>
+    </div>
   </div>
+</section>
+
+<!-- Key Qualities Section -->
+<section class="py-16 bg-gray-50">
+  <div class="container mx-auto flex flex-col md:flex-row gap-8 px-4">
+    <div class="md:w-1/2 flex flex-col gap-4">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Modern Living Room" class="rounded-lg shadow-md" />
+    </div>
+    <div class="md:w-1/2 bg-white rounded-lg shadow-lg p-8 flex flex-col justify-center">
+      <h3 class="text-2xl font-semibold mb-4">Key Qualities Of Home Interior Designers In Ahmedabad</h3>
+      <ul class="list-disc pl-5 text-gray-700 space-y-2">
+        <li><span class="font-semibold">Customised Solutions:</span> We create unique solutions for every project, accommodating architecture, lifestyle, and personality needs.</li>
+        <li><span class="font-semibold">Innovative Design:</span> Our team is renowned for fresh, innovative, and trendsetting interior design.</li>
+        <li><span class="font-semibold">Affordable Luxury:</span> We blend style and affordability, making luxury accessible.</li>
+        <li><span class="font-semibold">Client-Centric Approach:</span> We prioritize client satisfaction and transparent communication.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- What Do You Get Section -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col md:flex-row gap-8 items-center">
+      <div class="md:w-1/2">
+        <h3 class="text-2xl font-semibold mb-4">What Do You Get In Interior Design Services From Prasiddham?</h3>
+        <ul class="list-disc pl-5 text-gray-700 space-y-1">
+          <li>Living Room Design</li>
+          <li>Bedroom Design</li>
+          <li>Kids Room Design</li>
+          <li>Modular Kitchen Design</li>
+          <li>Wardrobe Solutions and Storage Units</li>
+          <li>Entertainment Unit Design</li>
+          <li>Dining Room</li>
+          <li>Landscape design</li>
+        </ul>
+      </div>
+      <div class="md:w-1/2 grid grid-cols-2 gap-4">
+        <div class="flex flex-col items-center bg-gray-50 rounded-lg p-4 shadow">
+          <svg class="w-10 h-10 text-amber-500 mb-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M8 12l2 2 4-4" /></svg>
+          <span class="font-semibold">Creative Designs</span>
+        </div>
+        <div class="flex flex-col items-center bg-gray-50 rounded-lg p-4 shadow">
+          <svg class="w-10 h-10 text-amber-500 mb-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M16 12l-4 4-2-2" /></svg>
+          <span class="font-semibold">Technical Expertise</span>
+        </div>
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Bedroom" class="rounded-lg shadow-md col-span-2" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery Section -->
+<section class="py-16 px-4 bg-gray-50 mb-16">
+  <div class="container mx-auto px-6">
+    <div id="carousel" class="relative w-full overflow-hidden">
+      <div id="carousel-inner" class="flex transition-transform duration-700 ease-in-out gap-6">
+        <div class="min-w-[50%] flex-shrink-0 p-4">
+          <img
+            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
+            alt="Gallery 1 - Living Room"
+            class="w-full rounded-lg shadow-lg"
+          />
+        </div>
+        <div class="min-w-[50%] flex-shrink-0 p-4">
+          <img
+            src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=600&q=80"
+            alt="Gallery 2 - Modern Dining"
+            class="w-full rounded-lg shadow-lg"
+          />
+        </div>
+        <div class="min-w-[50%] flex-shrink-0 p-4">
+          <img
+            src="https://images.unsplash.com/photo-1460518451285-97b6aa326961?auto=format&fit=crop&w=600&q=80"
+            alt="Gallery 3 - Bedroom"
+            class="w-full rounded-lg shadow-lg"
+          />
+        </div>
+        <div class="min-w-[50%] flex-shrink-0 p-4">
+          <img
+            src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80"
+            alt="Gallery 4 - Kitchen"
+            class="w-full rounded-lg shadow-lg"
+          />
+        </div>
+        <div class="min-w-[50%] flex-shrink-0 p-4">
+          <img
+            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80"
+            alt="Gallery 5 - Bathroom"
+            class="w-full rounded-lg shadow-lg"
+          />
+        </div>
+        <div class="min-w-[50%] flex-shrink-0 p-4">
+          <img
+            src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=80"
+            alt="Gallery 6 - Office"
+            class="w-full rounded-lg shadow-lg"
+          />
+        </div>
+      </div>
+
+      <!-- Optional Prev/Next Buttons -->
+      
+    </div>
+  </div>
+
+  <script type="module">
+    const carouselInner = document.getElementById('carousel-inner')
+    const slides = carouselInner.children
+    const total = slides.length
+    let index = 0
+    let interval
+
+    function update() {
+      carouselInner.style.transform = `translateX(-${index * 100}%)`
+    }
+
+    function next() {
+      index = (index + 1) % total
+      update()
+    }
+
+    function prev() {
+      index = (index - 1 + total) % total
+      update()
+    }
+
+    document.getElementById('next').onclick = () => {
+      clearInterval(interval)
+      next()
+      interval = setInterval(next, 5000)
+    }
+    document.getElementById('prev').onclick = () => {
+      clearInterval(interval)
+      prev()
+      interval = setInterval(next, 5000)
+    }
+
+    // auto-rotate
+    interval = setInterval(next, 5000)
+  </script>
+</section>
 </Layout>

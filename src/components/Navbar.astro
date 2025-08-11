@@ -1,63 +1,92 @@
 ---
 import logo from "../assets/logo.png";
 
-// Remove duplicate nav items and split navLinks for left/right
+// Updated navLinks for a more standard, user-friendly set
 const navLinks = [
+  { name: "Home", href: "/", children: [] },
   { name: "About", href: "/about", children: [] },
-  { name: "Contact", href: "/contact", children: [] },
-  { name: "Projects", href: "/projects", children: [] },
   { name: "Services", href: "/services", children: [] },
+  { name: "Projects", href: "/projects", children: [] },
   { name: "Blog", href: "/blog", children: [] },
-  // { name: "Portfolio", href: "./portfolio", children: [] },
-  // { name: "Testimonials", href: "./testimonials", children: [] },
+  { name: "Contact", href: "/contact", children: [] },
 ];
 
 // Calculate split index for left/right navs
 const leftCount = Math.ceil(navLinks.length / 2);
 const leftLinks = navLinks.slice(0, leftCount);
 const rightLinks = navLinks.slice(leftCount);
-
 ---
 
-<nav class="bg-white w-full sticky top-0 z-50 border-b border-gray-100">
+<nav id="main-navbar" class="bg-transparent w-full fixed top-0 z-50 border-b border-gray-100 backdrop-blur-xs transition-colors duration-300">
   <div class="max-w-screen-xl mx-auto px-4 py-3 relative">
     <!-- Desktop Layout -->
     <div class="hidden md:grid grid-cols-[1fr_auto_1fr] items-center">
       <!-- Left Links (Desktop) -->
-      <ul class="flex justify-end space-x-8 text-gray-500 font-semibold uppercase tracking-wide w-full">
-        {leftLinks.map((link) => (
-          <li class="flex-1 flex justify-center">
-            <a href={link.href} class="hover:text-gray-900 flex items-center">
-              {link.name}
-              {link.children?.length ? (
-                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-              ) : null}
-            </a>
-          </li>
-        ))}
+      <ul
+        class="flex justify-end space-x-8 text-amber-900 font-semibold uppercase tracking-wide w-full"
+      >
+        {
+          leftLinks.map((link) => (
+            <li class="flex-1 flex justify-center">
+              <a href={link.href} class="hover:text-amber-600 flex items-center transition-colors duration-200">
+                {link.name}
+                {link.children?.length ? (
+                  <svg
+                    class="w-4 h-4 ml-1"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                ) : null}
+              </a>
+            </li>
+          ))
+        }
       </ul>
 
       <!-- Logo -->
-      <a href="/" class="justify-self-center flex items-center mx-0 md:mx-8 lg:mx-16">
+      <a
+        href="/"
+        class="justify-self-center flex items-center mx-0 md:mx-8 lg:mx-16"
+      >
         <img src={logo.src} class="h-12 md:h-16" alt="Logo" />
       </a>
 
       <!-- Right Links (Desktop) -->
-      <ul class="flex justify-start space-x-8 text-gray-500 font-semibold uppercase tracking-wide w-full">
-        {rightLinks.map((link) => (
-          <li class="flex-1 flex justify-center">
-            <a href={link.href} class="hover:text-gray-900 flex items-center">
-              {link.name}
-              {link.children?.length ? (
-                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-              ) : null}
-            </a>
-          </li>
-        ))}
+      <ul
+        class="flex justify-start space-x-8 text-orange-900 font-semibold uppercase tracking-wide w-full"
+      >
+        {
+          rightLinks.map((link) => (
+            <li class="flex-1 flex justify-center">
+              <a href={link.href} class="hover:text-amber-600 flex items-center transition-colors duration-200">
+                {link.name}
+                {link.children?.length ? (
+                  <svg
+                    class="w-4 h-4 ml-1"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                ) : null}
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </div>
 
@@ -79,37 +108,66 @@ const rightLinks = navLinks.slice(leftCount);
   </div>
 
   <!-- Mobile Menu -->
-  <div id="mobile-menu" class="overflow-hidden transition-all duration-300 ease-in-out max-h-0 bg-white border-t border-gray-100 md:hidden mx-4">
+  <div
+    id="mobile-menu"
+    class="overflow-hidden transition-all duration-300 ease-in-out max-h-0 bg-white border-t border-gray-100 md:hidden mx-4"
+  >
     <ul class="flex flex-col divide-y divide-gray-100 my-4">
-      {navLinks.map((link, index) => (
-        <li>
-          {link.children?.length ? (
-            <>
-              <button class="w-full flex items-center justify-between px-6 py-5 text-gray-700 font-semibold bg-white hover:bg-gray-50 focus:outline-none" data-toggle={`submenu-${index}`}>
+      {
+        navLinks.map((link, index) => (
+          <li>
+            {link.children?.length ? (
+              <>
+                <button
+                  class="w-full flex items-center justify-between px-6 py-5 text-gray-800 font-semibold bg-white hover:bg-gray-50 focus:outline-none"
+                  data-toggle={`submenu-${index}`}
+                >
+                  {link.name}
+                  <svg
+                    class="w-4 h-4 ml-2"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+                <div
+                  id={`submenu-${index}`}
+                  class="bg-gray-50 transition-all duration-300 ease-in-out max-h-0 overflow-hidden mx-2"
+                >
+                  <ul class="py-2">
+                    {(link.children as { href: string; name: string }[]).map(
+                      (child) => (
+                        <li>
+                          <a
+                            href={child.href}
+                            class="block px-8 py-4 text-gray-700 hover:bg-amber-50"
+                          >
+                            {child.name}
+                          </a>
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </div>
+              </>
+            ) : (
+              <a
+                href={link.href}
+                class="block px-6 py-5 text-gray-800 font-semibold hover:bg-amber-50 transition-colors duration-200"
+              >
                 {link.name}
-                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              <div id={`submenu-${index}`} class="bg-pink-50 transition-all duration-300 ease-in-out max-h-0 overflow-hidden mx-2">
-                <ul class="py-2">
-                  {(link.children as { href: string; name: string }[]).map((child) => (
-                    <li>
-                      <a href={child.href} class="block px-8 py-4 text-gray-600 hover:bg-pink-100">
-                        {child.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </>
-          ) : (
-            <a href={link.href} class="block px-6 py-5 text-gray-700 font-semibold bg-pink-50 hover:bg-pink-100">
-              {link.name}
-            </a>
-          )}
-        </li>
-      ))}
+              </a>
+            )}
+          </li>
+        ))
+      }
     </ul>
   </div>
 </nav>
@@ -159,13 +217,21 @@ const rightLinks = navLinks.slice(leftCount);
     bottom: 50%;
     margin-bottom: -1.5px;
   }
+
+  /* Navbar scrolled state with dynamic accent (fallback for JS) */
+  .navbar-scrolled {
+    background: #7b7fff !important;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.04);
+    border-bottom-color: #fbbf24 !important;
+  }
 </style>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const menuToggle = document.getElementById("menu-toggle");
     const mobileMenu = document.getElementById("mobile-menu");
-    const hamburger = menuToggle?.querySelector('.hamburger');
+    const hamburger = menuToggle?.querySelector(".hamburger");
+    const navbar = document.getElementById("main-navbar");
 
     menuToggle?.addEventListener("click", () => {
       mobileMenu?.classList.toggle("max-h-0");
@@ -176,11 +242,36 @@ const rightLinks = navLinks.slice(leftCount);
     const toggles = document.querySelectorAll("[data-toggle]");
     toggles.forEach((btn) => {
       btn.addEventListener("click", () => {
-        const target = document.getElementById((btn as HTMLElement).dataset.toggle ?? "");
+        const target = document.getElementById(
+          (btn).dataset.toggle ?? ""
+        );
         if (!target) return;
         target.classList.toggle("max-h-0");
         target.classList.toggle("max-h-[400px]");
       });
     });
+
+    // Add scroll event for navbar accent with gradual color transition
+    function handleNavbarScroll() {
+      if (!navbar) return;
+      // How far to scroll before full accent (in px)
+      const maxScroll = 180;
+      const y = Math.min(window.scrollY, maxScroll);
+      // Interpolate between transparent and white
+      // We'll fade from transparent to white, with a subtle amber border
+      const whiteOpacity = y / maxScroll * 0.98; // up to 0.98 opacity
+      if (y > 2) {
+        navbar.style.background = `rgba(128, 150, 180,${whiteOpacity})`;
+        navbar.style.boxShadow = "0 2px 8px 0 rgba(0,0,0,0.04)";
+        navbar.style.borderBottomColor = "#fbbf24";
+      } else {
+        navbar.style.background = "transparent";
+        navbar.style.boxShadow = "";
+        navbar.style.borderBottomColor = "";
+      }
+    }
+    window.addEventListener("scroll", handleNavbarScroll, { passive: true });
+    // Run once on load
+    handleNavbarScroll();
   });
 </script>
