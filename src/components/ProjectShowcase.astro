@@ -2,15 +2,15 @@
 // Project Showcase Component - J Design Studio Style
 const projects = [
   {
-  id: 1,
-  title: "Modern Living Room Transformation",
-  subtitle: "From Concept to Reality",
-  description: "A complete transformation of a 2,500 sq ft living space, blending contemporary aesthetics with functional design principles.",
-  images: [
-    "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80"
-  ],
-    category: "Residential",
+    id: 1,
+    title: "Modern Living Room Transformation",
+    subtitle: "From Concept to Reality",
+    description: "A complete transformation of a 2,500 sq ft living space, blending contemporary aesthetics with functional design principles.",
+    images: [
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80"
+    ],
+    category: "Residential Interiors",
     tags: ["Living Room", "Modern", "Contemporary", "Furniture"],
     stats: [
       { label: "Project Duration", value: "8 Weeks" },
@@ -25,14 +25,14 @@ const projects = [
     ]
   },
   {
-  id: 2,
-  title: "Luxury Master Bedroom Suite",
-  subtitle: "Elegance Meets Comfort",
-  description: "A sophisticated master bedroom transformation featuring premium materials and bespoke design elements.",
-  images: [
-    "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=800&q=80"
-  ],
-    category: "Residential",
+    id: 2,
+    title: "Luxury Master Bedroom Suite",
+    subtitle: "Elegance Meets Comfort",
+    description: "A sophisticated master bedroom transformation featuring premium materials and bespoke design elements.",
+    images: [
+      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=800&q=80"
+    ],
+    category: "Commercial Spaces",
     tags: ["Bedroom", "Luxury", "Premium", "Wardrobe"],
     stats: [
       { label: "Project Duration", value: "6 Weeks" },
@@ -47,14 +47,14 @@ const projects = [
     ]
   },
   {
-  id: 3,
-  title: "Contemporary Office Space",
-  subtitle: "Productivity Through Design",
-  description: "A modern office transformation that enhances productivity while maintaining a welcoming atmosphere.",
-  images: [
-    "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80"
-  ],
-    category: "Commercial",
+    id: 3,
+    title: "Contemporary Office Space",
+    subtitle: "Productivity Through Design",
+    description: "A modern office transformation that enhances productivity while maintaining a welcoming atmosphere.",
+    images: [
+      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80"
+    ],
+    category: "Renovation Projects",
     tags: ["Office", "Commercial", "Productivity", "Modern"],
     stats: [
       { label: "Project Duration", value: "12 Weeks" },
@@ -69,14 +69,14 @@ const projects = [
     ]
   },
   {
-  id: 4,
-  title: "Kitchen & Dining Renovation",
-  subtitle: "Culinary Excellence",
-  description: "A complete kitchen and dining area renovation that combines functionality with modern aesthetics.",
-  images: [
-    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80"
-  ],
-    category: "Residential",
+    id: 4,
+    title: "Kitchen & Dining Renovation",
+    subtitle: "Culinary Excellence",
+    description: "A complete kitchen and dining area renovation that combines functionality with modern aesthetics.",
+    images: [
+      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80"
+    ],
+    category: "Furniture Design",
     tags: ["Kitchen", "Dining", "Renovation", "Functional"],
     stats: [
       { label: "Project Duration", value: "10 Weeks" },
@@ -88,6 +88,28 @@ const projects = [
       "Island counter design",
       "Smart appliances",
       "Breakfast nook"
+    ]
+  },
+  {
+    id: 5,
+    title: "Rooftop Garden Oasis",
+    subtitle: "Green Retreat in the Sky",
+    description: "An urban rooftop garden design that transforms unused space into a serene green oasis with functional seating and ambient lighting.",
+    images: [
+      "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=80"
+    ],
+    category: "Turnkey Execution",
+    tags: ["Outdoor", "Garden", "Greenery", "Relaxation"],
+    stats: [
+      { label: "Project Duration", value: "4 Weeks" },
+      { label: "Space Size", value: "600 sq ft" },
+      { label: "Budget Range", value: "₹5-8 Lakhs" }
+    ],
+    features: [
+      "Custom planters",
+      "Ambient lighting",
+      "Automated irrigation",
+      "Comfort seating area"
     ]
   }
 ];
@@ -242,9 +264,9 @@ const allTags = [...new Set(projects.flatMap(p => p.tags))];
             Let's create something extraordinary together. Book a consultation and start your design journey today.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <button class="bg-white text-amber-600 font-bold py-4 px-8 rounded-lg hover:bg-gray-100 transition-colors duration-200">
+            <a href="/contact" class="bg-white text-amber-600 font-bold py-4 px-8 rounded-lg hover:bg-gray-100 transition-colors duration-200 inline-block text-center">
               Book Consultation
-            </button>
+            </a>
             <button class="border-2 border-white text-white font-bold py-4 px-8 rounded-lg hover:bg-white hover:text-amber-600 transition-colors duration-200">
               View Portfolio
             </button>

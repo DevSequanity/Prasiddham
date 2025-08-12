@@ -18,12 +18,12 @@ const rightLinks = navLinks.slice(leftCount);
 ---
 
 <nav id="main-navbar" class="bg-transparent w-full fixed top-0 z-50 border-b border-gray-100 backdrop-blur-xs transition-colors duration-300">
-  <div class="max-w-screen-xl mx-auto px-4 py-3 relative">
+  <div class="max-w-screen-xl mx-auto px-4 py-1 relative">
     <!-- Desktop Layout -->
     <div class="hidden md:grid grid-cols-[1fr_auto_1fr] items-center">
       <!-- Left Links (Desktop) -->
       <ul
-        class="flex justify-end space-x-8 text-amber-900 font-semibold uppercase tracking-wide w-full"
+        class="flex justify-end space-x-8 text-amber-300 font-semibold uppercase tracking-wide w-full"
       >
         {
           leftLinks.map((link) => (
@@ -61,7 +61,7 @@ const rightLinks = navLinks.slice(leftCount);
 
       <!-- Right Links (Desktop) -->
       <ul
-        class="flex justify-start space-x-8 text-orange-900 font-semibold uppercase tracking-wide w-full"
+        class="flex justify-start space-x-8 text-amber-300 font-semibold uppercase tracking-wide w-full"
       >
         {
           rightLinks.map((link) => (
