@@ -1,0 +1,139 @@
+---
+export interface Props {
+  images?: Array<{
+    src: string;
+    alt: string;
+    caption?: string;
+  }>;
+  autoPlay?: boolean;
+  interval?: number;
+  showNavigation?: boolean;
+}
+
+const { 
+  images = [
+    {
+      src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
+      alt: "Gallery 1 - Living Room"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=600&q=80",
+      alt: "Gallery 2 - Modern Dining"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1460518451285-97b6aa326961?auto=format&fit=crop&w=600&q=80",
+      alt: "Gallery 3 - Bedroom"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80",
+      alt: "Gallery 4 - Kitchen"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80",
+      alt: "Gallery 5 - Bathroom"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=80",
+      alt: "Gallery 6 - Office"
+    }
+  ],
+  autoPlay = true,
+  interval = 5000,
+  showNavigation = false
+} = Astro.props;
+---
+
+<section class="py-16 px-4 bg-gray-50 mb-16">
+  <div class="container mx-auto px-6">
+    <div id="carousel" class="relative w-full overflow-hidden">
+      <div id="carousel-inner" class="flex transition-transform duration-700 ease-in-out gap-6">
+        {images.map((image, index) => (
+          <div class="min-w-[50%] flex-shrink-0 p-4">
+            <div class="relative w-full h-64 md:h-80 lg:h-96 overflow-hidden rounded-lg shadow-lg">
+              <img
+                src={image.src}
+                alt={image.alt}
+                class="w-full h-full object-cover object-center"
+                loading="lazy"
+              />
+            </div>
+            {image.caption && (
+              <p class="text-center text-gray-600 mt-2 text-sm">{image.caption}</p>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {showNavigation && (
+        <div class="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4">
+          <button id="prev" class="bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg transition-all duration-200">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button id="next" class="bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg transition-all duration-200">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      )}
+    </div>
+  </div>
+
+  <script type="module">
+    const { autoPlay: shouldAutoPlay, interval: autoPlayInterval, showNavigation: hasNavigation } = { autoPlay: {autoPlay}, interval: {interval}, showNavigation: {showNavigation} };
+
+    const carouselInner = document.getElementById('carousel-inner')
+    if (carouselInner) {
+      const slides = carouselInner.children
+      const total = slides.length
+      let index = 0
+      let interval
+
+      function update() {
+        carouselInner.style.transform = `translateX(-${index * 100}%)`
+      }
+
+      function next() {
+        index = (index + 1) % total
+        update()
+      }
+
+      function prev() {
+        index = (index - 1 + total) % total
+        update()
+      }
+
+      if (hasNavigation) {
+        const nextBtn = document.getElementById('next')
+        if (nextBtn) {
+          nextBtn.onclick = () => {
+            clearInterval(interval)
+            next()
+            if (shouldAutoPlay) {
+              interval = setInterval(next, autoPlayInterval)
+            }
+          }
+        }
+
+        const prevBtn = document.getElementById('prev')
+        if (prevBtn) {
+          prevBtn.onclick = () => {
+            clearInterval(interval)
+            prev()
+            if (shouldAutoPlay) {
+              interval = setInterval(next, autoPlayInterval)
+            }
+          }
+        }
+      }
+
+      if (shouldAutoPlay) {
+        interval = setInterval(next, autoPlayInterval)
+      }
+    }
+  </script>
+</section>
+
+
