@@ -4,41 +4,11 @@ import AboutContent from '../components/AboutContent.astro';
 import ValuesSection from '../components/ValuesSection.astro';
 import TeamSection from '../components/TeamSection.astro';
 
-import { Image } from "astro:assets";
-
-import heroImage from "./../images/home.JPG";
+import HeroSection from '../components/HeroSection.astro';
 ---
 
 <Layout>
-
-
-  <section class="relative w-full h-[80vh] flex items-center justify-center overflow-hidden">
-    <!-- Background image with filter -->
-    <div class="absolute inset-0">
-      <Image 
-        src={heroImage} 
-        alt="Hero Image" 
-        class="w-full h-full object-cover filter brightness-45" 
-      />
-    </div>
-
-    <!-- Overlay content -->
-    <div class="relative z-10 text-center text-white px-4">
-      <h1 class="text-4xl md:text-6xl font-bold mb-4">
-        Transform Your Space with Prasiddham
-      </h1>
-      <p class="text-lg md:text-xl mb-8">
-        Award-winning interior design, tailored to your lifestyle. Experience the perfect blend of creativity, quality, and care.
-      </p>
-      <a
-        href="/contact"
-        class="inline-block bg-gradient-to-r from-amber-500 to-orange-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold px-8 py-4 rounded-lg shadow-lg transition-all duration-300"
-      >
-        Get Free Consultation
-      </a>
-    </div>
-  </section>
-
+  <HeroSection/>
   <AboutContent />
   <ValuesSection />
   <TeamSection />
