@@ -1,115 +1,159 @@
 ---
+import { Image } from "astro:assets";
+import bedroomGray1 from "../images/bedroom-gray/1.jpg";
+import bedroomGray2 from "../images/bedroom-gray/2.jpg";
+import bedroomGray3 from "../images/bedroom-gray/3.jpg";
+import bedroomGray4 from "../images/bedroom-gray/4.jpg";
+import bedroomGray5 from "../images/bedroom-gray/5.jpg";
+import bedroomGray6 from "../images/bedroom-gray/6.jpg";
+
+import bedroomPink1 from "../images/bedroom-pink/1.jpg"
+import bedroomPink2 from "../images/bedroom-pink/2.jpg"
+import bedroomPink3 from "../images/bedroom-pink/3.jpg"
+import bedroomPink4 from "../images/bedroom-pink/4.jpg"
+
+import hall1 from "../images/house/1.jpg"
+import hall2 from "../images/house/2.jpg"
+import hall3 from "../images/house/3.jpg"
+import hall4 from "../images/house/4.jpg"
+import hall5 from "../images/house/5.jpg"
+import hall6 from "../images/house/6.jpg"
+import hall7 from "../images/house/7.jpg"
+import hall8 from "../images/house/8.jpg"
+import hall9 from "../images/house/9.jpg"
+import hall10 from "../images/house/10.jpg"
+
+import kitchen1 from "../images/kitchen/1.jpg"
+import kitchen2 from "../images/kitchen/2.jpg"
+import kitchen3 from "../images/kitchen/3.jpg"
+import kitchen4 from "../images/kitchen/4.jpg"
+import kitchen5 from "../images/kitchen/5.jpg"
+import kitchen6 from "../images/kitchen/6.jpg"
+import kitchen7 from "../images/kitchen/7.jpg"
+import kitchen8 from "../images/kitchen/8.jpg"
+import kitchen9 from "../images/kitchen/9.jpg"
+import kitchen10 from "../images/kitchen/10.jpg"
+
 // Project Showcase Component - J Design Studio Style
 const projects = [
   {
     id: 1,
-    title: "Modern Living Room Transformation",
-    subtitle: "From Concept to Reality",
-    description: "A complete transformation of a 2,500 sq ft living space, blending contemporary aesthetics with functional design principles.",
+    title: "Blush Pink Bedroom Retreat",
+    subtitle: "Soft Elegance & Tranquility",
+    description: "A cozy and elegant bedroom designed with blush pink tones, perfect for relaxation and rejuvenation.",
     images: [
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80"
+      bedroomPink1,
+      bedroomPink2,
+      bedroomPink3,
+      bedroomPink4
     ],
-    category: "Residential Interiors",
-    tags: ["Living Room", "Modern", "Contemporary", "Furniture"],
+    category: "Bedroom",
+    tags: ["indoor", "pink", "elegant", "bedroom", "cozy"],
     stats: [
-      { label: "Project Duration", value: "8 Weeks" },
-      { label: "Space Size", value: "2,500 sq ft" },
-      { label: "Budget Range", value: "₹15-20 Lakhs" }
+      { label: "Project Duration", value: "5 Weeks" },
+      { label: "Space Size", value: "300 sq ft" },
+      { label: "Budget Range", value: "₹3-5 Lakhs" }
     ],
     features: [
-      "Custom furniture design",
-      "Smart lighting integration",
-      "Sustainable materials",
-      "Multi-functional spaces"
+      "Pastel color palette",
+      "Custom wardrobe",
+      "Ambient lighting",
+      "Soft furnishings"
     ]
   },
   {
     id: 2,
-    title: "Luxury Master Bedroom Suite",
-    subtitle: "Elegance Meets Comfort",
-    description: "A sophisticated master bedroom transformation featuring premium materials and bespoke design elements.",
+    title: "Waves of Beauty",
+    subtitle: "Organic Patterns, Modern Comfort",
+    description: "A natural blend of Brown and Gray revealed in patterns of comfort",
     images: [
-      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=800&q=80"
+      bedroomGray1,
+      bedroomGray2,
+      bedroomGray3,
+      bedroomGray4,
+      bedroomGray5,
+      bedroomGray6
     ],
-    category: "Commercial Spaces",
-    tags: ["Bedroom", "Luxury", "Premium", "Wardrobe"],
+    category: "Bedroom",
+    tags: ["indoor", "gray", "brown", "elegant", "bedroom"],
     stats: [
       { label: "Project Duration", value: "6 Weeks" },
-      { label: "Space Size", value: "800 sq ft" },
-      { label: "Budget Range", value: "₹8-12 Lakhs" }
+      { label: "Space Size", value: "350 sq ft" },
+      { label: "Budget Range", value: "₹4-6 Lakhs" }
     ],
     features: [
-      "Walk-in wardrobe design",
-      "En-suite bathroom",
-      "Premium textiles",
-      "Ambient lighting system"
+      "Ambient lighting",
+      "Fully furnished",
+      "Custom headboard design",
+      "Smart storage solutions"
     ]
   },
   {
     id: 3,
-    title: "Contemporary Office Space",
-    subtitle: "Productivity Through Design",
-    description: "A modern office transformation that enhances productivity while maintaining a welcoming atmosphere.",
+    title: "Resting Blues",
+    subtitle: "Elegant Minimalism in Blue & Brown",
+    description: "A refined entrance and hall area featuring a blue sofa, brown furniture, ambient lighting, and a service table. The space is adorned with a wall clock and a TV, complemented by AC for comfort. The design emphasizes minimalism with a touch of elegance.",
     images: [
-      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80"
+      hall1,
+      hall2,
+      hall3,
+      hall4,
+      hall5,
+      hall6,
+      hall7,
+      hall8,
+      hall9,
+      hall10     
     ],
-    category: "Renovation Projects",
-    tags: ["Office", "Commercial", "Productivity", "Modern"],
+    category: "Hall",
+    tags: ["indoor", "blue", "brown", "minimalism", "elegant", "hall", "entrance", "sofa", "tv", "ac", "ambient lighting", "service table", "wall clock"],
     stats: [
-      { label: "Project Duration", value: "12 Weeks" },
-      { label: "Space Size", value: "5,000 sq ft" },
-      { label: "Budget Range", value: "₹25-35 Lakhs" }
+      { label: "Project Duration", value: "4 Weeks" },
+      { label: "Space Size", value: "400 sq ft" },
+      { label: "Budget Range", value: "₹3-5 Lakhs" }
     ],
     features: [
-      "Open plan layout",
-      "Collaborative zones",
-      "Ergonomic furniture",
-      "Natural light optimization"
+      "Blue color sofa",
+      "Predominantly brown furniture",
+      "Service table",
+      "Wall clock",
+      "TV unit",
+      "Air conditioning",
+      "Ambient lighting",
+      "Minimalist and elegant design"
     ]
   },
   {
     id: 4,
-    title: "Kitchen & Dining Renovation",
-    subtitle: "Culinary Excellence",
-    description: "A complete kitchen and dining area renovation that combines functionality with modern aesthetics.",
+    title: "Minimalist Kitchen Elegance",
+    subtitle: "Sleek Functionality & Modern Comfort",
+    description: "A minimalist kitchen design with an eye for elegance, fully furnished and equipped with ambient lighting, chimney, fridge, and a traditional matka for water. The space blends modern convenience with subtle, refined aesthetics.",
     images: [
-      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80"
+      kitchen1,
+      kitchen2,
+      kitchen3,
+      kitchen4,
+      kitchen5,
+      kitchen6,
+      kitchen7,
+      kitchen8,
+      kitchen9,
+      kitchen10
     ],
-    category: "Furniture Design",
-    tags: ["Kitchen", "Dining", "Renovation", "Functional"],
+    category: "Kitchen",
+    tags: ["indoor", "kitchen", "minimalism", "elegant", "fully furnished", "ambient lighting", "chimney", "fridge", "matka"],
     stats: [
-      { label: "Project Duration", value: "10 Weeks" },
-      { label: "Space Size", value: "1,200 sq ft" },
-      { label: "Budget Range", value: "₹18-25 Lakhs" }
+      { label: "Project Duration", value: "3 Weeks" },
+      { label: "Space Size", value: "180 sq ft" },
+      { label: "Budget Range", value: "₹2-4 Lakhs" }
     ],
     features: [
-      "Custom cabinetry",
-      "Island counter design",
-      "Smart appliances",
-      "Breakfast nook"
-    ]
-  },
-  {
-    id: 5,
-    title: "Rooftop Garden Oasis",
-    subtitle: "Green Retreat in the Sky",
-    description: "An urban rooftop garden design that transforms unused space into a serene green oasis with functional seating and ambient lighting.",
-    images: [
-      "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=80"
-    ],
-    category: "Turnkey Execution",
-    tags: ["Outdoor", "Garden", "Greenery", "Relaxation"],
-    stats: [
-      { label: "Project Duration", value: "4 Weeks" },
-      { label: "Space Size", value: "600 sq ft" },
-      { label: "Budget Range", value: "₹5-8 Lakhs" }
-    ],
-    features: [
-      "Custom planters",
+      "Minimalist design with elegant finishes",
+      "Fully furnished kitchen",
       "Ambient lighting",
-      "Automated irrigation",
-      "Comfort seating area"
+      "Modern chimney",
+      "Spacious fridge",
+      "Traditional matka for water"
     ]
   }
 ];
@@ -175,11 +219,24 @@ const allTags = [...new Set(projects.flatMap(p => p.tags))];
             data-project-id={project.id}
           >
             <div class="relative h-64">
-              <img 
-                src={project.images[0]}
-                alt={project.title}
-                class="w-full h-full object-cover"
-              />
+              {typeof project.images[0] === 'string' ? (
+                <img 
+                  src={project.images[0]}
+                  alt={project.title}
+                  class="w-full h-full object-cover"
+                />
+              ) : (
+                <Image 
+                  src={project.images[0]}
+                  alt={project.title}
+                  class="w-full h-full object-cover"
+                  width={400}
+                  height={256}
+                  quality={80}
+                  format="webp"
+                  loading="lazy"
+                />
+              )}
               <div class="absolute top-4 left-4">
                 <span class="bg-amber-500 text-white text-xs font-medium px-3 py-1 rounded-full">
                   {project.category}
@@ -434,12 +491,15 @@ const allTags = [...new Set(projects.flatMap(p => p.tags))];
   document.getElementById('modal-subtitle').textContent = project.description;
   // Render all images in the gallery
   const gallery = document.getElementById('modal-images-gallery');
-  gallery.innerHTML = project.images.map(img => `
-    <div class=\"relative group min-w-[220px] md:min-w-[300px] h-60 md:h-80 rounded-xl md:rounded-2xl overflow-hidden shadow-lg md:shadow-xl border border-gray-100\">
-      <img src=\"${img}\" alt=\"${project.title}\" class=\"w-full h-full object-cover transition-transform duration-500 group-hover:scale-105\" />
-      <div class=\"absolute inset-0 bg-gradient-to-t from-black/30 to-transparent\"></div>
-    </div>
-  `).join('');
+  gallery.innerHTML = project.images.map(img => {
+    const imgSrc = typeof img === 'string' ? img : img.src;
+    return `
+      <div class="relative group min-w-[220px] md:min-w-[300px] h-60 md:h-80 rounded-xl md:rounded-2xl overflow-hidden shadow-lg md:shadow-xl border border-gray-100">
+        <img src="${imgSrc}" alt="${project.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+      </div>
+    `;
+  }).join('');
     
     // Populate features
     const featuresContainer = document.getElementById('modal-features');
