@@ -1,3 +1,8 @@
+---
+import { Image } from 'astro:assets';
+import gate_right from './../images/gate-Right.jpg';
+---
+
 <section class="py-16 bg-white">
   <div class="container mx-auto px-4">
     <div class="flex flex-col md:flex-row gap-8 items-center">
@@ -24,10 +29,11 @@
           <span class="font-semibold">Technical Expertise</span>
         </div>
         <div class="relative w-full h-48 md:h-64 overflow-hidden rounded-lg shadow-md col-span-2">
-          <img 
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=400&q=80" 
-            alt="Modern bedroom" 
+          <Image
+            src={gate_right}
+            alt="Modern bedroom"
             class="w-full h-full object-cover object-center"
+            widths={[400]}
             loading="lazy"
           />
         </div>

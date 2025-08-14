@@ -1,5 +1,6 @@
 ---
-import logo from "../assets/logo.png";
+import {Image} from "astro:assets";
+import logo from "./../images/polished.jpg";
 // About Content Section Component
 ---
 
@@ -12,11 +13,11 @@ import logo from "../assets/logo.png";
           Our Design Journey
         </h2>
         <p class="text-lg text-gray-600 leading-relaxed">
-          Founded in 2020, we began with a passion for creating beautiful, functional spaces that transform how people live and work. What started as a small team of creative designers has evolved into a full-service interior design studio.
-        </p>
+        Founded in 2021, Prasiddham Interior by Maalizz Ventures brings over a decade of expertise in transforming spaces across India and abroad. Based in Ahmedabad, we offer complete interior solutions — from furniture, false ceilings, and electrical work to painting, Vastu consultancy, and renovations.
+      </p>
         <p class="text-lg text-gray-600 leading-relaxed">
-          Today, we collaborate with homeowners, businesses, and developers across the region, helping them bring their vision to life through thoughtful design, quality craftsmanship, and innovative space planning solutions.
-        </p>
+        We believe in delivering exactly what we promise, using only the materials quoted, and adding value through practical tips and long-lasting solutions. Led by Naressh Mali, our mission is simple: create spaces that bring happiness to clients, because a happy client is our best advertisement.
+      </p>
         
         <!-- Stats -->
         <div class="grid grid-cols-3 gap-6 pt-8">
@@ -38,12 +39,12 @@ import logo from "../assets/logo.png";
       <!-- Image -->
 
       <div class="relative">
-        <div class="aspect-square bg-gradient-to-br from-amber-100 to-orange-200 rounded-2xl p-8 flex items-center justify-center">
-          <img 
-            src={logo.src} 
-            alt="Interior Design Logo" 
-            class="w-2/3 h-2/3 object-contain rounded-xl shadow-lg"
-            loading="lazy"
+        <div class="aspect-square bg-gradient-to-br from-amber-100 to-orange-200 rounded-2xl flex items-center justify-center">
+          <Image
+            src={logo}
+            alt="Interior Design Logo"
+            class="w-full h-full object-cover rounded-xl shadow-lg"
+            loading="eager"
           />
         </div>
         <!-- Floating Elements -->

@@ -1,25 +1,50 @@
-<section class="py-16 bg-gray-50">
-  <div class="container mx-auto flex flex-col md:flex-row gap-8 px-4">
-    <div class="md:w-1/2 flex flex-col gap-4">
-      <div class="relative w-full h-64 md:h-80 overflow-hidden rounded-lg shadow-md">
-        <img 
-          src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" 
-          alt="Modern Living Room" 
+---
+// src/components/IntroductionSection.astro
+import { Image } from "astro:assets";
+import polished from './../images/polished.jpg';
+
+const { imagePosition = "right" } = Astro.props;
+const isLeft = imagePosition === "left";
+---
+<section class="py-16 bg-white">
+  <div class="container mx-auto flex flex-col md:flex-row items-center gap-8 px-4">
+    {/* Text Left */}
+    <div class="md:w-1/2 w-full order-1 md:order-1">
+      <h3 class="text-2xl font-semibold mb-4">
+        Key Qualities Of Home Interior Designers In Ahmedabad
+      </h3>
+      <ul class="list-disc pl-5 text-gray-700 space-y-2">
+        <li>
+          <span class="font-semibold">Customised Solutions:</span>
+          We create unique solutions for every project, accommodating architecture, lifestyle, and personality needs.
+        </li>
+        <li>
+          <span class="font-semibold">Innovative Design:</span>
+          Our team is renowned for fresh, innovative, and trendsetting interior design.
+        </li>
+        <li>
+          <span class="font-semibold">Affordable Luxury:</span>
+          We blend style and affordability, making luxury accessible.
+        </li>
+        <li>
+          <span class="font-semibold">Client-Centric Approach:</span>
+          We prioritize client satisfaction and transparent communication.
+        </li>
+      </ul>
+    </div>
+    {/* Image Right */}
+    <div class="md:w-1/2 w-full order-2 md:order-2 flex justify-center">
+      <div class="relative w-full h-72 sm:h-96 md:h-80 overflow-hidden rounded-lg shadow-lg">
+        <Image
+          src={polished}
+          alt="Living Room"
           class="w-full h-full object-cover object-center"
           loading="lazy"
+          formats={['avif','webp','jpeg']}
+          widths={[400, 600, 900]}
+          sizes="100vw, (min-width: 768px) 50vw"
         />
       </div>
     </div>
-    <div class="md:w-1/2 bg-white rounded-lg shadow-lg p-8 flex flex-col justify-center">
-      <h3 class="text-2xl font-semibold mb-4">Key Qualities Of Home Interior Designers In Ahmedabad</h3>
-      <ul class="list-disc pl-5 text-gray-700 space-y-2">
-        <li><span class="font-semibold">Customised Solutions:</span> We create unique solutions for every project, accommodating architecture, lifestyle, and personality needs.</li>
-        <li><span class="font-semibold">Innovative Design:</span> Our team is renowned for fresh, innovative, and trendsetting interior design.</li>
-        <li><span class="font-semibold">Affordable Luxury:</span> We blend style and affordability, making luxury accessible.</li>
-        <li><span class="font-semibold">Client-Centric Approach:</span> We prioritize client satisfaction and transparent communication.</li>
-      </ul>
-    </div>
   </div>
 </section>
-
-

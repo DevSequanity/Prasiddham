@@ -1,5 +1,6 @@
 ---
 import logo from "../assets/logo.png";
+import { Image } from "astro:assets";
 
 // Updated navLinks for a more standard, user-friendly set
 const navLinks = [
@@ -56,7 +57,7 @@ const rightLinks = navLinks.slice(leftCount);
         href="/"
         class="justify-self-center flex items-center mx-0 md:mx-8 lg:mx-16"
       >
-        <img src={logo.src} class="h-12 md:h-16" alt="Logo" />
+        <Image src={logo} alt="Logo is nice"  class="object-contain h-12 w-20 md:h-16 md:w-30" />
       </a>
 
       <!-- Right Links (Desktop) -->

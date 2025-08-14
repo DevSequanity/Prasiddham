@@ -160,24 +160,43 @@ const footerData = {
         <h3 class="text-lg font-semibold text-gray-100 mb-3">Contact Us</h3>
         <ul class="space-y-3">
           {footerData.contactInfo.map((item) => (
-            <li class="flex items-start gap-3">
-              <span class="inline-flex items-center justify-center w-9 h-9 rounded-md bg-gray-700 group-hover:bg-orange-500/20 transition flex-shrink-0">
-                <svg class="w-4 h-4 text-amber-200 group-hover:text-orange-400 transition-colors" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d={item.icon} fill="currentColor" />
-                </svg>
-              </span>
-
-              <div class="text-sm">
-                {item.href ? (
-                  <a href={item.href} class="hover:underline text-gray-200">
-                    {item.value}
-                  </a>
-                ) : (
-                  <span class="text-gray-200">{item.value}</span>
-                )}
-                <div class="text-xs text-gray-400 mt-0.5">{item.type}</div>
-              </div>
-            </li>
+            item.type === "phone" ? (
+              <li class="flex items-start gap-3 hover:bg-gray-700 rounded transition">
+                <a
+                  href={`tel:${item.value.replace(/\s+/g, '')}`}
+                  class="flex items-start gap-3 "
+                  style="text-decoration: none;"
+                >
+                  <span class="inline-flex items-center justify-center w-9 h-9 rounded-md bg-gray-700 group-hover:bg-orange-500/20 transition flex-shrink-0">
+                    <svg class="w-4 h-4 text-amber-200 group-hover:text-orange-400 transition-colors" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d={item.icon} fill="currentColor" />
+                    </svg>
+                  </span>
+                  <div class="text-sm">
+                    <span class="text-gray-200">{item.value}</span>
+                    <div class="text-xs text-gray-400 mt-0.5">{item.type}</div>
+                  </div>
+                </a>
+              </li>
+            ) : (
+              <li class="flex items-start gap-3">
+                <span class="inline-flex items-center justify-center w-9 h-9 rounded-md bg-gray-700 group-hover:bg-orange-500/20 transition flex-shrink-0">
+                  <svg class="w-4 h-4 text-amber-200 group-hover:text-orange-400 transition-colors" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d={item.icon} fill="currentColor" />
+                  </svg>
+                </span>
+                <div class="text-sm">
+                  {item.href ? (
+                    <a href={item.href} class="hover:underline text-gray-200">
+                      {item.value}
+                    </a>
+                  ) : (
+                    <span class="text-gray-200">{item.value}</span>
+                  )}
+                  <div class="text-xs text-gray-400 mt-0.5">{item.type}</div>
+                </div>
+              </li>
+            )
           ))}
         </ul>
       </div>
