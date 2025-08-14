@@ -1,21 +1,265 @@
+---
+// src/components/IntroductionSection.astro
+import { Image } from "astro:assets";
+import gate_left from './../images/gate-left.jpg';
+
+const { imagePosition = "left" } = Astro.props;
+const isLeft = imagePosition === "left";
+---
 <section class="py-16 bg-white">
-  <div class="container mx-auto flex flex-col md:flex-row items-center gap-8 px-4">
-    <div class="md:w-1/2">
-      <div class="relative w-full h-64 md:h-80 overflow-hidden rounded-lg shadow-lg">
-        <img 
-          src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" 
-          alt="Living Room" 
-          class="w-full h-full object-cover object-center"
-          loading="lazy"
-        />
+  <div class={`container mx-auto flex flex-col md:flex-row items-center gap-8 px-4`}>
+    {isLeft && (
+      <div class="w-full md:w-1/2 order-1 md:order-1">
+        <!-- IMAGE BLOCK (same as before) -->
+        <div class="relative w-full h-56 sm:h-64 md:h-80 overflow-hidden rounded-lg shadow-lg">
+          <a href="#" id="intro-image-link">
+            <Image
+              src={gate_left}
+              alt="Gate Left"
+              class="w-full h-full object-cover object-center cursor-pointer"
+              formats={['avif','webp','jpeg']}
+              widths={[400, 600, 900]}
+              sizes="100vw, (min-width: 768px) 50vw"
+              loading="lazy"
+              id="intro-image"
+            />
+          </a>
+          <div 
+            id="fullscreen-overlay" 
+            class="fixed inset-0 bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 pointer-events-none opacity-0 transition-opacity duration-300"
+          >
+            <Image
+              src={gate_left}
+              alt="Gate Left Fullscreen"
+              id="fullscreen-img"
+              class="max-w-full max-h-full object-contain rounded-lg shadow-lg cursor-pointer transition-transform duration-300 scale-95"
+              formats={['avif', 'webp', 'jpeg']}
+              widths={[400, 600, 900]}
+              sizes="100vw"
+              loading="lazy"
+              style="transition: transform 0.3s;"
+            />
+          </div>
+        </div>
+        <!-- ...script block as before... -->
       </div>
-    </div>
-    <div class="md:w-1/2">
+    )}
+    <div class={`w-full md:w-1/2 mt-6 md:mt-0 ${isLeft ? "order-2 md:order-2" : "order-1 md:order-1"}`}>
       <h2 class="text-3xl font-bold mb-4">Best Home Interior Designers In Ahmedabad</h2>
-      <p class="text-gray-700 mb-4">Prasiddham is the top home interior designer in Ahmedabad. Our unique creations, meticulous attention to detail, and cutting-edge innovation elevate every project we take on. As your experienced team, we help you turn your home into a haven, a perfect extension of your taste that reflects your dreams and aspirations. We handle everything with pride and accuracy, and infuse it with a touch of magic.</p>
-      <p class="text-gray-700">Our process is client-focused, with full project management, transparent pricing, and great client feedback. Trust us to turn your imagination into a spectacular reality, from concept to completion. Let's create something extraordinary together.</p>
+      <p class="text-gray-700 mb-4">
+        Prasiddham is the top home interior designer in Ahmedabad. Our unique creations, meticulous attention to detail, and cutting-edge innovation elevate every project we take on. As your experienced team, we help you turn your home into a haven, a perfect extension of your taste that reflects your dreams and aspirations. We handle everything with pride and accuracy, and infuse it with a touch of magic.
+      </p>
+      <p class="text-gray-700">
+        Our process is client-focused, with full project management, transparent pricing, and great client feedback. Trust us to turn your imagination into a spectacular reality, from concept to completion. Let's create something extraordinary together.
+      </p>
     </div>
+    {!isLeft && (
+      <div class="w-full md:w-1/2 order-2 md:order-2">
+        <!-- IMAGE BLOCK (same as before) -->
+        <div class="relative w-full h-56 sm:h-64 md:h-80 overflow-hidden rounded-lg shadow-lg">
+          <a href="#" id="intro-image-link">
+            <Image
+              src={gate_left}
+              alt="Gate Left"
+              class="w-full h-full object-cover object-center cursor-pointer"
+              formats={['avif','webp','jpeg']}
+              widths={[400, 600, 900]}
+              sizes="100vw, (min-width: 768px) 50vw"
+              loading="lazy"
+              id="intro-image"
+            />
+          </a>
+          <div 
+            id="fullscreen-overlay" 
+            class="fixed inset-0 bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 pointer-events-none opacity-0 transition-opacity duration-300"
+          >
+            <Image
+              src={gate_left}
+              alt="Gate Left Fullscreen"
+              id="fullscreen-img"
+              class="max-w-full max-h-full object-contain rounded-lg shadow-lg cursor-pointer transition-transform duration-300 scale-95"
+              formats={['avif', 'webp', 'jpeg']}
+              widths={[400, 600, 900]}
+              sizes="100vw"
+              loading="lazy"
+              style="transition: transform 0.3s;"
+            />
+          </div>
+        </div>
+        <!-- ...script block as before... -->
+      </div>
+    )}
   </div>
+  <!-- Place your script block here, outside the conditional rendering, so it works for both positions -->
+  <script type="text/javascript" is:inline>
+    const imgLink = document.getElementById('intro-image-link');
+    const overlay = document.getElementById('fullscreen-overlay');
+    const fullscreenImg = document.getElementById('fullscreen-img');
+    let startX = null;
+    let startY = null;
+    let lastX = 0;
+    let lastY = 0;
+    let isSliding = false;
+    let isFullscreen = false;
+    let pinchStartDist = null;
+    let pinchStartScale = 1;
+    let scale = 1;
+    let originX = 0;
+    let originY = 0;
+
+    function getDistance(touches) {
+      const dx = touches[0].clientX - touches[1].clientX;
+      const dy = touches[0].clientY - touches[1].clientY;
+      return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    if (imgLink && overlay && fullscreenImg) {
+      imgLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        overlay.classList.remove('pointer-events-none', 'opacity-0');
+        overlay.classList.add('pointer-events-auto', 'opacity-100');
+        fullscreenImg.classList.remove('scale-95');
+        fullscreenImg.classList.add('scale-100');
+        fullscreenImg.style.transform = 'scale(1)';
+        scale = 1;
+        lastX = 0;
+        lastY = 0;
+        fullscreenImg.style.transition = 'transform 0.3s';
+        document.body.style.overflow = 'hidden';
+        isFullscreen = true;
+      });
+
+      function closeOverlay(direction) {
+        overlay.classList.remove('pointer-events-auto', 'opacity-100');
+        overlay.classList.add('pointer-events-none', 'opacity-0');
+        fullscreenImg.classList.remove('scale-100');
+        fullscreenImg.classList.add('scale-95');
+        fullscreenImg.style.transition = 'transform 0.3s';
+        if (direction === 'left') {
+          fullscreenImg.style.transform = `translateX(-100vw) scale(${scale})`;
+        } else if (direction === 'right') {
+          fullscreenImg.style.transform = `translateX(100vw) scale(${scale})`;
+        } else if (direction === 'up') {
+          fullscreenImg.style.transform = `translateY(-100vh) scale(${scale})`;
+        } else if (direction === 'down') {
+          fullscreenImg.style.transform = `translateY(100vh) scale(${scale})`;
+        } else {
+          fullscreenImg.style.transform = `scale(0.95)`;
+        }
+        setTimeout(() => {
+          fullscreenImg.style.transform = 'scale(0.95)';
+          fullscreenImg.style.transition = '';
+          document.body.style.overflow = '';
+          isFullscreen = false;
+          scale = 1;
+          lastX = 0;
+          lastY = 0;
+        }, 300);
+      }
+
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay || e.target === fullscreenImg) {
+          closeOverlay();
+        }
+      });
+
+      window.addEventListener('keydown', function(e) {
+        if (isFullscreen && (e.key === 'Escape' || e.key === 'Backspace')) {
+          closeOverlay();
+        }
+      });
+
+      // Prevent accidental refresh (pull-to-refresh) while in fullscreen
+      let preventScroll = function(e) {
+        if (isFullscreen && e.touches && e.touches.length === 1 && scale === 1) {
+          e.preventDefault();
+        }
+      };
+      overlay.addEventListener('touchmove', preventScroll, { passive: false });
+
+      // Touch events for sliding and pinch-zoom
+      fullscreenImg.addEventListener('touchstart', function(e) {
+        if (e.touches.length === 1 && scale === 1) {
+          startX = e.touches[0].clientX;
+          startY = e.touches[0].clientY;
+          isSliding = true;
+        } else if (e.touches.length === 2) {
+          pinchStartDist = getDistance(e.touches);
+          pinchStartScale = scale;
+          // Calculate midpoint for transform-origin
+          const rect = fullscreenImg.getBoundingClientRect();
+          originX = ((e.touches[0].clientX + e.touches[1].clientX) / 2 - rect.left) / rect.width * 100;
+          originY = ((e.touches[0].clientY + e.touches[1].clientY) / 2 - rect.top) / rect.height * 100;
+          fullscreenImg.style.transformOrigin = `${originX}% ${originY}%`;
+          isSliding = false;
+        }
+      });
+
+      fullscreenImg.addEventListener('touchmove', function(e) {
+        if (e.touches.length === 1 && isSliding && scale === 1 && startX !== null && startY !== null) {
+          const deltaX = e.touches[0].clientX - startX;
+          const deltaY = e.touches[0].clientY - startY;
+          fullscreenImg.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(1)`;
+          lastX = deltaX;
+          lastY = deltaY;
+        } else if (e.touches.length === 2) {
+          isSliding = false;
+          const dist = getDistance(e.touches);
+          let newScale = Math.max(1, Math.min(pinchStartScale * (dist / pinchStartDist), 4));
+          scale = newScale;
+          fullscreenImg.style.transition = '';
+          fullscreenImg.style.transform = `scale(${scale})`;
+        }
+      });
+
+      fullscreenImg.addEventListener('touchend', function(e) {
+        if (e.touches.length === 0 && isSliding && scale === 1 && startX !== null && startY !== null) {
+          // Only consider as slide-to-close if not zoomed in
+          if (Math.abs(lastX) > 80 || Math.abs(lastY) > 80) {
+            if (Math.abs(lastX) > Math.abs(lastY)) {
+              closeOverlay(lastX < 0 ? 'left' : 'right');
+            } else {
+              closeOverlay(lastY < 0 ? 'up' : 'down');
+            }
+          } else {
+            // Snap back if not enough swipe
+            fullscreenImg.style.transition = 'transform 0.3s';
+            fullscreenImg.style.transform = 'scale(1)';
+            setTimeout(() => {
+              fullscreenImg.style.transition = '';
+            }, 300);
+          }
+          startX = null;
+          startY = null;
+          lastX = 0;
+          lastY = 0;
+          isSliding = false;
+        }
+        // On pinch end, keep zoomed state
+        if (e.touches.length === 0 && scale > 1) {
+          fullscreenImg.style.transition = 'transform 0.3s';
+          fullscreenImg.style.transform = `scale(${scale})`;
+          setTimeout(() => {
+            fullscreenImg.style.transition = '';
+          }, 300);
+        }
+      });
+
+      // Double tap to reset zoom
+      let lastTap = 0;
+      fullscreenImg.addEventListener('touchend', function(e) {
+        const now = Date.now();
+        if (now - lastTap < 300 && scale > 1) {
+          scale = 1;
+          fullscreenImg.style.transition = 'transform 0.3s';
+          fullscreenImg.style.transformOrigin = '';
+          fullscreenImg.style.transform = 'scale(1)';
+          setTimeout(() => {
+            fullscreenImg.style.transition = '';
+          }, 300);
+        }
+        lastTap = now;
+      });
+    }
+  </script>
 </section>
-
-

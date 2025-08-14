@@ -259,9 +259,9 @@ const rightLinks = navLinks.slice(leftCount);
       const y = Math.min(window.scrollY, maxScroll);
       // Interpolate between transparent and white
       // We'll fade from transparent to white, with a subtle amber border
-      const whiteOpacity = y / maxScroll * 0.98; // up to 0.98 opacity
+      const whiteOpacity = y / maxScroll * 0.8; // up to 0.8 opacity
       if (y > 2) {
-        navbar.style.background = `rgba(128, 150, 180,${whiteOpacity})`;
+        navbar.style.background = `rgba(50, 38, 14,${whiteOpacity})`;
         navbar.style.boxShadow = "0 2px 8px 0 rgba(0,0,0,0.04)";
         navbar.style.borderBottomColor = "#fbbf24";
       } else {
