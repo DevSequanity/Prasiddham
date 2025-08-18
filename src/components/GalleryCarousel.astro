@@ -52,8 +52,11 @@ const carouselId = `carousel-${Math.random().toString(36).substr(2, 9)}`;
               <Image
                 src={image.src}
                 alt={image.alt ?? "No alt"}
+                height={800}
+                width={1200}
+                quality={80}
                 class="w-full h-full object-cover"
-                loading={index === 0 ? "eager" : "lazy"}
+                loading={index < 4 ? "eager" : "lazy"}
               />
               {image.caption && (
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
