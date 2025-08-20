@@ -88,7 +88,8 @@ const footerData = {
   },
   copyright: {
     year: new Date().getFullYear(),
-    text: "All rights reserved. | Designed with ❤ in Ahmedabad"
+    text: "All rights reserved. | Designed with ❤ at ",
+    companyLink: "Sequanity Technologies"
   }
 };
 ---
@@ -220,6 +221,14 @@ const footerData = {
     <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm">
       <p class="text-gray-400">
         &copy; {footerData.copyright.year} {footerData.company.name}. {footerData.copyright.text}
+        <a 
+          href="https://sequanity.com/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="text-amber-200 hover:text-orange-400 transition-colors"
+        >
+          {footerData.copyright.companyLink}
+        </a>
       </p>
     </div>
   </div>
