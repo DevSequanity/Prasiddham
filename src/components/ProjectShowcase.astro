@@ -25,7 +25,7 @@ import hall10 from "./../images/house/10.jpg";
 
 import kitchen1 from "./../images/Kitchen/1.jpg";
 import kitchen2 from "./../images/Kitchen/2.jpg";
-import kitchen3 from "./../images/Kitchen/3.jpg";
+// import kitchen3 from "./../images/Kitchen/3.jpg";
 import kitchen4 from "./../images/Kitchen/4.jpg";
 import kitchen5 from "./../images/Kitchen/5.jpg";
 import kitchen6 from "./../images/Kitchen/6.jpg";
@@ -33,6 +33,36 @@ import kitchen7 from "./../images/Kitchen/7.jpg";
 import kitchen8 from "./../images/Kitchen/8.jpg";
 import kitchen9 from "./../images/Kitchen/9.jpg";
 import kitchen10 from "./../images/Kitchen/10.jpg";
+
+import outsideindustry1 from "./../images/outside/industry_1.jpg";
+import outsideindustry2 from "./../images/outside/industry_2.jpg";
+import outsideindustry3 from "./../images/outside/industry_3.jpg";
+
+import outsideOffice1 from "./../images/outside/office_1.jpg";
+import outsideOffice2 from "./../images/outside/office_2.jpg";
+import outsideOffice3 from "./../images/outside/office_3.jpg";
+import outsideOffice4 from "./../images/outside/office_4.webp";
+import outsideOffice5 from "./../images/outside/office_5.jpg";
+import outsideOffice6 from "./../images/outside/office_6.jpg";
+import outsideOffice7 from "./../images/outside/office_7.png";
+import outsideOffice8 from "./../images/outside/office_8.jpg";
+import outsideOffice9 from "./../images/outside/office_9.jpg";
+import outsideOffice10 from "./../images/outside/office_10.jpg";
+import outsideOffice11 from "./../images/outside/office_11.png";
+import outsideOffice12 from "./../images/outside/office_12.png";
+import outsideOffice13 from "./../images/outside/office_13.jpg";
+import outsideOffice14 from "./../images/outside/office_14.jpg";
+import outsideOffice15 from "./../images/outside/office_15.jpg";
+import outsideOffice16 from "./../images/outside/office_16.webp";
+import outsideOffice17 from "./../images/outside/office_17.jpg";
+import outsideOffice18 from "./../images/outside/office_18.webp";
+import outsideOffice19 from "./../images/outside/office_19.webp";
+import outsideOffice20 from "./../images/outside/office_20.webp";
+import outsideOffice21 from "./../images/outside/office_21.webp";
+
+import outsideresto1 from "./../images/outside/resto_1.jpg";
+import outsideresto2 from "./../images/outside/resto_2.jpg";
+import outsideresto3 from "./../images/outside/resto_3.jpg";
 
 // Project Showcase Component - J Design Studio Style
 const projects = [
@@ -144,7 +174,7 @@ const projects = [
     images: [
       kitchen4,
       kitchen2,
-      kitchen3,
+      // kitchen3,
       kitchen1,
       kitchen5,
       kitchen6,
@@ -178,7 +208,89 @@ const projects = [
       "Spacious fridge",
       "Traditional matka for water",
     ],
+  },{
+    id: 5,
+    title: "Industrial Interior Makeover",
+    subtitle: "Raw Materials, Robust Aesthetics",
+    description:
+      "A functional industrial interior leveraging exposed elements, metal textures, and robust lighting, designed for durability and style.",
+    images: [
+      outsideindustry1,
+      outsideindustry2,
+      outsideindustry3,
+    ],
+    category: "Industrial",
+    tags: ["industrial", "commercial", "exposed", "metal", "lighting"],
+    stats: [
+      { label: "Project Duration", value: "5 Weeks" },
+      { label: "Space Size", value: "1200 sq ft" },
+      { label: "Budget Range", value: "₹6-10 Lakhs" },
+    ],
+    features: [
+      "Exposed ceiling and ducting",
+      "Metal and raw wood finishes",
+      "High-durability flooring",
+      "Task and ambient industrial lighting",
+    ],
   },
+  {
+    id: 6,
+    title: "Functional Office Ecosystems",
+    subtitle: "Efficiency, Collaboration, and Comfort",
+    description:
+      "A collection of office spaces designed for productivity—zoned layouts, ergonomic workstations, collaborative hubs, and clean visual hierarchy to keep teams focused and connected.",
+    images: [
+      outsideOffice14,
+      outsideOffice15,
+      outsideOffice6,
+      outsideOffice10,
+      outsideOffice3,
+      outsideOffice17,
+      outsideOffice5,
+    ],
+    category: "Office",
+    tags: ["office", "functional", "ergonomic", "collaboration", "workstation"],
+    stats: [
+      { label: "Project Duration", value: "8 Weeks" },
+      { label: "Space Size", value: "2500 sq ft" },
+      { label: "Budget Range", value: "₹12-18 Lakhs" },
+    ],
+    features: [
+      "Zoned planning for teams and meetings",
+      "Ergonomic desks and seating",
+      "Acoustic panels for focused work",
+      "Writable walls and collaboration areas",
+    ],
+  },
+  {
+    id: 7,
+    title: "Luxury Cafe & Restaurant Retreats",
+    subtitle: "Relaxation Wrapped in Luxury",
+    description:
+      "A curated set of cafe and restaurant interiors focusing on mood lighting, plush seating, and premium finishes to create luxurious and relaxing dining experiences.",
+    images: [
+      outsideresto1,
+      outsideresto2,
+      outsideresto3,
+      outsideOffice4,
+      outsideOffice8,
+      outsideOffice11,
+    ],
+    category: "Restaurant/Cafe",
+    tags: ["restaurant", "cafe", "luxury", "relaxation", "hospitality"],
+    stats: [
+      { label: "Project Duration", value: "7 Weeks" },
+      { label: "Space Size", value: "1800 sq ft" },
+      { label: "Budget Range", value: "₹10-15 Lakhs" },
+    ],
+    features: [
+      "Mood and accent lighting",
+      "Plush and comfortable seating",
+      "Premium textures and finishes",
+      "Intimate zones for relaxation",
+    ],
+  }
+
 ];
 
 const categories = [...new Set(projects.map((p) => p.category))];

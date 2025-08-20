@@ -43,6 +43,8 @@ const carouselId = `carousel-${Math.random().toString(36).substr(2, 9)}`;
       <!-- Carousel Container -->
       <div 
         id={carouselId}
+        data-autoplay={autoPlay}
+        data-interval={interval}
         class={`relative ${height} overflow-hidden rounded-2xl shadow-2xl`}
       >
         <!-- Images Container -->
@@ -117,6 +119,9 @@ const carouselId = `carousel-${Math.random().toString(36).substr(2, 9)}`;
   function initCarousel(carouselId: string, autoPlay: boolean, interval: number) {
     const carousel = document.getElementById(carouselId);
     if (!carousel) return;
+    // Prevent multiple initializations (avoids stacking intervals and listeners)
+    if (carousel.getAttribute('data-initialized') === 'true') return;
+    carousel.setAttribute('data-initialized', 'true');
 
     const container = carousel.querySelector('.flex') as HTMLElement;
     const prevBtn = carousel.querySelector('.carousel-prev') as HTMLButtonElement;
@@ -127,7 +132,9 @@ const carouselId = `carousel-${Math.random().toString(36).substr(2, 9)}`;
 
     let currentIndex = 0;
     let autoplayInterval: number | null = null;
-    const totalImages = dots.length;
+    const slides = carousel.querySelectorAll('.min-w-full') as NodeListOf<HTMLElement>;
+    const totalImages = slides.length;
+    if (total) total.textContent = totalImages.toString();
 
     function updateCarousel(index: number) {
       currentIndex = index;
@@ -158,9 +165,12 @@ const carouselId = `carousel-${Math.random().toString(36).substr(2, 9)}`;
     }
 
     function startAutoplay() {
-      if (autoPlay && interval > 0) {
-        autoplayInterval = window.setInterval(nextSlide, interval);
+      if (!autoPlay || interval <= 0) return;
+      if (autoplayInterval) {
+        clearInterval(autoplayInterval);
+        autoplayInterval = null;
       }
+        autoplayInterval = window.setInterval(nextSlide, interval);
     }
 
     function stopAutoplay() {
@@ -198,6 +208,19 @@ const carouselId = `carousel-${Math.random().toString(36).substr(2, 9)}`;
     // Pause autoplay on hover
     carousel.addEventListener('mouseenter', stopAutoplay);
     carousel.addEventListener('mouseleave', startAutoplay);
+    // Pointer events for broader device support
+    carousel.addEventListener('pointerenter', stopAutoplay);
+    carousel.addEventListener('pointerleave', startAutoplay);
+
+    // Pause when tab is hidden, resume when visible
+    const handleVisibility = () => {
+      if (document.hidden) {
+        stopAutoplay();
+      } else {
+        startAutoplay();
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibility);
 
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
@@ -259,11 +282,11 @@ const carouselId = `carousel-${Math.random().toString(36).substr(2, 9)}`;
   /* Smooth transitions */
   .carousel-prev:hover,
   .carousel-next:hover {
-    transform: translateY(-50%) scale(1.1);
+    transform: scale(1.1);
   }
 
   .carousel-dot:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
   }
 
   /* Responsive adjustments */
