@@ -6,30 +6,36 @@ const commonGradient = "from-amber-100 to-orange-200";
 const commonAccentColor = "text-amber-600";
 const commonHoverColor = "bg-amber-600";
 
+import { Image } from "astro:assets";
+import naressh from "./../images/Naressh-cropped.jpg"
+import amit from "./../images/amit.avif"
+import neha from "./../images/neha.avif"
+import rohan from "./../images/rohan.avif"
+
 const teamMembers = [
   {
     name: "NARESSH MALI",
     position: "Managing director",
     description: "With over 10 years of experience in interior design, NARESSH leads our team with a passion for creating innovative and functional spaces that reflect our clients' unique styles.",
-    image: "https://images.unsplash.com/photo-1658797508717-41b6f9ae54fe?q=80&w=2571&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    image: naressh
   },
   {
     name: "Amit Patel",
     position: "Senior Interior Designer",
     description: "Expert in modern minimalist design and sustainable materials, specializing in creating functional spaces that maximize both beauty and efficiency.",
-    image: "https://plus.unsplash.com/premium_photo-1689977927774-401b12d137d6?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    image: amit
   },
   {
     name: "Neha Gupta",
     position: "Creative Director",
     description: "Passionate about color theory and spatial design, creating unique interiors that reflect each client's personality and lifestyle.",
-    image: "https://plus.unsplash.com/premium_photo-1682089806994-abcccbaa953a?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    image: neha
   },
   {
     name: "Rohan Singh",
     position: "Project Manager",
     description: "Experienced project manager ensuring seamless coordination between design, contractors, and clients for flawless project delivery.",
-    image: "https://images.unsplash.com/photo-1590943312905-ea3a8ad75a8d?q=80&w=2777&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    image: rohan
   }
 ];
 ---
@@ -50,7 +56,7 @@ const teamMembers = [
         <div class="text-center group">
           <div class="relative mb-6">
             <div class={`w-48 h-48 mx-auto bg-gradient-to-br ${commonGradient} rounded-full flex items-center justify-center overflow-hidden`}>
-              <img 
+              <Image 
                 src={member.image} 
                 alt={`${member.name} - ${member.position}`}
                 class="w-full h-full object-cover"
