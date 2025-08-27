@@ -1,39 +1,65 @@
 ---
 // Services CTA Component
+const {
+  title = "Ready to Transform Your Space?",
+  subtitle = "Let's discuss your project and create a custom design solution that perfectly matches your vision and lifestyle. We believe that if clients are happy with our work, they will naturally refer us to others.",
+  primaryButtonText = "Schedule Free Consultation",
+  primaryButtonLink = "/contact",
+  secondaryButtonText = "Call Us Now",
+  secondaryButtonLink = "tel:+917210812345",
+  stats = [
+    {
+      number: "13+",
+      label: "Years Experience",
+      description: "Since 2011"
+    },
+    {
+      number: "500+",
+      label: "Happy Clients",
+      description: "Across India, UAE and Oman"
+    },
+    {
+      number: "1000+",
+      label: "Projects Completed",
+      description: "Residential & Commercial"
+    }
+  ]
+} = Astro.props;
 ---
 
-<section class="py-20 bg-gradient-to-r from-orange-600 to-amber-600">
+<section class="py-10 bg-gradient-to-r from-orange-600 to-amber-600">
   <div class="container mx-auto px-4">
     <div class="max-w-4xl mx-auto text-center">
       <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
-        Ready to Transform Your Space?
+        {title}
       </h2>
       <p class="text-xl text-orange-100 mb-8 leading-relaxed">
-        Let's discuss your project and create a custom design solution that perfectly matches your vision and lifestyle.
+        {subtitle}
       </p>
       
       <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-        <a href="/contact" class="bg-white text-orange-600 hover:bg-orange-50 px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
-          Schedule Free Consultation
+        <a href={primaryButtonLink} class="bg-white text-orange-600 hover:bg-orange-50 px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
+          {primaryButtonText}
         </a>
-        <a href="tel:+917210812345" class="border-2 border-white text-white hover:bg-white hover:text-orange-600 px-8 py-4 rounded-lg font-semibold transition-all duration-300">
-          Call Us Now
+        <a href={secondaryButtonLink} class="border-2 border-white text-white hover:bg-white hover:text-orange-600 px-8 py-4 rounded-lg font-semibold transition-all duration-300">
+          {secondaryButtonText}
         </a>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-          <div class="text-3xl font-bold text-white mb-2">500+</div>
-          <div class="text-orange-100">Happy Clients</div>
-        </div>
-        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-          <div class="text-3xl font-bold text-white mb-2">1000+</div>
-          <div class="text-orange-100">Projects Completed</div>
-        </div>
-        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-          <div class="text-3xl font-bold text-white mb-2">5+</div>
-          <div class="text-orange-100">Years Experience</div>
-        </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-center">
+        {stats.map((stat) => (
+          <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+            <div class="text-2xl font-bold text-white mb-2">{stat.number}</div>
+            <div class="text-orange-100 font-medium">{stat.label}</div>
+            <div class="text-orange-200 text-sm mt-1">{stat.description}</div>
+          </div>
+        ))}
+      </div>
+      
+      <div class="mt-8 text-center">
+        <p class="text-orange-100 text-lg">
+          "We make your space from basic to royal - Convert your property into a masterpiece with our expert design and renovation services."
+        </p>
       </div>
     </div>
   </div>
