@@ -342,7 +342,7 @@ const categories = [...new Set(projects.map((p) => p.category))];
 const allTags = [...new Set(projects.flatMap((p) => p.tags))];
 ---
 
-<section class="py-20 bg-gradient-to-br from-gray-50 to-white" id="project-showcase">
+<section class="py-16 mt-8 bg-gradient-to-br from-gray-50 to-white" id="project-showcase">
   <div class="container mx-auto px-4">
     <!-- Section Header -->
     <div class="text-center mb-16">
@@ -355,14 +355,14 @@ const allTags = [...new Set(projects.flatMap((p) => p.tags))];
     </div>
 
     <!-- Filter Controls -->
-    <div class="mb-12">
-      <div class="flex flex-wrap justify-center gap-4 mb-8">
-        <button class="filter-btn category-btn px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 bg-amber-500 text-white"
+    <div class="mb-6">
+      <div class="flex flex-wrap justify-center gap-2 mb-6">
+        <button class="filter-btn category-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-amber-500 text-white"
           data-category="all">
           All Projects
         </button>
         {categories.map((category) => (
-          <button class="filter-btn category-btn px-6 py-3 rounded-full text-sm font-medium border border-gray-200"
+          <button class="filter-btn category-btn px-4 py-2 rounded-full text-sm font-medium border border-gray-200"
             data-category={category}>
             {category}
           </button>
@@ -371,7 +371,7 @@ const allTags = [...new Set(projects.flatMap((p) => p.tags))];
 
       <div class="flex flex-wrap justify-center gap-2">
         {allTags.map((tag) => (
-          <button class="filter-btn tag-btn px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 bg-gray-100 text-gray-600"
+          <button class="filter-btn tag-btn px-2 py-2 rounded-full text-xs font-medium transition-all duration-200 bg-gray-100 text-gray-600"
             data-tag={tag}>
             #{tag}
           </button>
@@ -380,7 +380,7 @@ const allTags = [...new Set(projects.flatMap((p) => p.tags))];
     </div>
 
     <!-- Projects Grid -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16" id="projects-grid">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-0" id="projects-grid">
       {projects.map((project) => (
         <div class="project-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer"
           data-category={project.category} data-tags={project.tags.join(',')} data-project-id={project.id}>
@@ -393,7 +393,7 @@ const allTags = [...new Set(projects.flatMap((p) => p.tags))];
               </span>
             </div>
           </div>
-          <div class="p-6">
+          <div class="p-4">
             <h4 class="text-xl font-bold text-gray-900 mb-2">{project.title}</h4>
             <p class="text-gray-600 mb-4">{project.description.substring(0, 100)}...</p>
             <div class="flex flex-wrap gap-2 mb-4">
@@ -412,7 +412,7 @@ const allTags = [...new Set(projects.flatMap((p) => p.tags))];
     {projects.map((project) => (
       <div id={`modal-${project.id}`} class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-2 md:p-6">
         <div class="bg-white rounded-3xl shadow-2xl max-w-3xl md:max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-gray-200">
-          <div class="p-4 md:p-8 lg:p-10">
+          <div class="p-4 md:p-6 lg:p-6">
             <div class="flex justify-between items-start mb-6 md:mb-8">
               <div>
                 <span class="inline-block bg-amber-100 text-amber-800 text-xs md:text-sm font-medium px-3 py-1 rounded-full mb-2">
@@ -438,7 +438,7 @@ const allTags = [...new Set(projects.flatMap((p) => p.tags))];
             </div>
 
             <!-- Features -->
-            <div class="bg-gray-50 rounded-2xl p-4 md:p-6">
+            <div class="bg-gray-50 rounded-2xl p-2 md:p-4">
               <h3 class="text-xl font-bold text-gray-900 mb-4">Key Features</h3>
               <div class="grid md:grid-cols-2 gap-3">
                 {project.features.map((feature) => (
