@@ -1,0 +1,280 @@
+---
+import YouTubeEmbed from "./YouTubeEmbed.astro";
+
+export interface Props {
+  youtubeChannelUrl?: string;
+  channelName?: string;
+}
+
+const {
+  youtubeChannelUrl = "https://www.youtube.com/@prasiddhaminterior",
+  channelName = "Prasiddham Interior"
+} = Astro.props;
+
+// Video showcase data - Replace these with your actual YouTube video IDs
+const videos = [
+  {
+    id: "DPcoE_wQi1c", // Replace with your video ID
+    title: "The Zen",
+    description: "behind the design",
+    category: "Philosophy"
+  },
+  {
+    id: "cwTCqZu5E60", // Replace with your video ID
+    title: "Decoding Doshi",
+    description: "",
+    category: "Inspiration"
+  },
+  {
+    id: "HXSh05GCsyc", // Replace with your video ID
+    title: "Inside an Architect's Tropical Garden Home",
+    description: "",
+    category: "Urban Farm"
+  }
+];
+
+const categories = [...new Set(videos.map(v => v.category))];
+---
+
+<section class="min-h-screen pt-20 pb-8 md:pt-24 md:pb-12 bg-gradient-to-br from-gray-50 to-white">
+  <div class="max-w-[1600px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
+    
+    <!-- Header Section -->
+    <header class="text-center mb-6 md:mb-10">
+      <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-6 tracking-tight">
+        Design Process Videos
+      </h1>
+      <p class="text-sm md:text-base lg:text-lg xl:text-xl text-gray-600 max-w-3xl mx-auto px-2">
+        Take a behind-the-scenes look at our design process and see how we bring spaces to life
+      </p>
+    </header>
+
+    <!-- Filter Section -->
+    <div class="flex flex-wrap justify-center gap-2 mb-8 md:mb-12">
+      <button class="filter-btn px-3 py-1.5 md:px-4 md:py-2 lg:px-5 lg:py-2.5 rounded-full text-xs md:text-sm font-semibold transition-all duration-200 bg-amber-500 text-white shadow-md hover:shadow-lg"
+        data-category="all">
+        All Videos
+      </button>
+      {categories.map((category) => (
+        <button class="filter-btn px-3 py-1.5 md:px-4 md:py-2 lg:px-5 lg:py-2.5 rounded-full text-xs md:text-sm font-semibold border border-gray-300 text-gray-700 hover:border-amber-500 hover:text-amber-600 hover:bg-amber-50 transition-all duration-200"
+          data-category={category}>
+          {category}
+        </button>
+      ))}
+    </div>
+
+    <!-- Videos Grid Container -->
+    <main class="space-y-6 md:space-y-8 lg:space-y-10 xl:space-y-12">
+      {videos.map((video, index) => (
+        <article class="video-item" data-category={video.category}>
+          
+          <!-- Large Screens: Multi-column layout with sidebar -->
+          <div class="hidden xl:block">
+            <div class="grid xl:grid-cols-4 2xl:grid-cols-5 gap-8 bg-white rounded-xl shadow-lg border border-gray-200 p-6 hover:shadow-xl transition-shadow duration-300">
+              
+              <!-- Video Column -->
+              <div class="xl:col-span-2 2xl:col-span-3">
+                <div class="bg-gray-100 rounded-lg overflow-hidden shadow-md">
+                  <div class="aspect-video">
+                    <YouTubeEmbed 
+                      videoId={video.id} 
+                      title={video.title}
+                      class="w-full h-full"
+                    />
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Content Column -->
+              <div class="xl:col-span-2 2xl:col-span-2 flex flex-col justify-center space-y-4">
+                <span class="inline-block bg-amber-500 text-white font-medium px-3 py-1 rounded-full text-xs w-fit">
+                  {video.category}
+                </span>
+                <h2 class="text-2xl xl:text-3xl font-bold text-gray-900 leading-tight">
+                  {video.title}
+                </h2>
+                {video.description && (
+                  <p class="text-base xl:text-lg text-gray-600">
+                    {video.description}
+                  </p>
+                )}
+                <div class="pt-2">
+                  <a href={youtubeChannelUrl} target="_blank" rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 w-fit">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                    Watch on YouTube
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Medium/Large Screens: Side-by-side layout -->
+          <div class="hidden md:block xl:hidden">
+            <div class="bg-white rounded-lg shadow-lg border border-gray-200 p-5 hover:shadow-xl transition-shadow duration-300">
+              <div class={`grid md:grid-cols-2 gap-6 items-center ${index % 2 === 0 ? '' : 'md:grid-flow-col-dense'}`}>
+                
+                <!-- Video -->
+                <div class={index % 2 === 0 ? 'md:order-1' : 'md:order-2'}>
+                  <div class="bg-gray-100 rounded-lg overflow-hidden shadow-md">
+                    <div class="aspect-video">
+                      <YouTubeEmbed 
+                        videoId={video.id} 
+                        title={video.title}
+                        class="w-full h-full"
+                      />
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Content -->
+                <div class={`space-y-3 ${index % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}>
+                  <span class="inline-block bg-amber-500 text-white font-medium px-3 py-1 rounded-full text-xs">
+                    {video.category}
+                  </span>
+                  <h2 class="text-xl md:text-2xl font-bold text-gray-900 leading-tight">
+                    {video.title}
+                  </h2>
+                  {video.description && (
+                    <p class="text-sm md:text-base text-gray-600">
+                      {video.description}
+                    </p>
+                  )}
+                  <div class="pt-2">
+                    <a href={youtubeChannelUrl} target="_blank" rel="noopener noreferrer"
+                      class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                      </svg>
+                      Watch on YouTube
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile: Compact stacked layout -->
+          <div class="block md:hidden">
+            <div class="bg-white rounded-lg shadow-md border border-gray-200 p-3 hover:shadow-lg transition-shadow duration-300">
+              <!-- Video -->
+              <div class="bg-gray-100 rounded-md overflow-hidden shadow-sm mb-3">
+                <div class="aspect-video">
+                  <YouTubeEmbed 
+                    videoId={video.id} 
+                    title={video.title}
+                    class="w-full h-full"
+                  />
+                </div>
+              </div>
+              
+              <!-- Content -->
+              <div class="space-y-2">
+                <span class="inline-block bg-amber-500 text-white font-medium px-2 py-0.5 rounded-full text-xs">
+                  {video.category}
+                </span>
+                <h2 class="text-lg font-bold text-gray-900 leading-tight">
+                  {video.title}
+                </h2>
+                {video.description && (
+                  <p class="text-sm text-gray-600">
+                    {video.description}
+                  </p>
+                )}
+                <div class="pt-1">
+                  <a href={youtubeChannelUrl} target="_blank" rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-3 py-1.5 rounded-md font-semibold text-xs transition-all duration-300">
+                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                    Watch on YouTube
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </article>
+      ))}
+    </main>
+
+
+
+    <!-- Unified CTA for all screens -->
+    <footer class="mt-12 md:mt-16 lg:mt-12">
+      <div class="bg-gradient-to-r from-amber-500 to-orange-500 rounded-lg shadow-lg p-4 md:p-6 lg:p-8 xl:p-10 text-center max-w-8xl mx-auto">
+        <h3 class="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-white mb-2 md:mb-3 lg:mb-4">Ready to Transform Your Space?</h3>
+        <p class="text-sm md:text-base lg:text-lg text-orange-100 mb-4 lg:mb-6 max-w-2xl mx-auto">Subscribe to {channelName} for design inspiration and get your free consultation</p>
+        <div class="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center">
+          <a href={youtubeChannelUrl} target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 bg-white text-orange-600 px-4 py-2 md:px-5 md:py-3 lg:px-6 lg:py-3.5 xl:px-8 xl:py-4 rounded-lg font-semibold text-sm md:text-base lg:text-lg hover:bg-orange-50 transition-colors min-w-[160px] lg:min-w-[180px]">
+            <svg class="w-4 h-4 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            Subscribe Now
+          </a>
+          <a href="/contact"
+            class="inline-flex items-center justify-center bg-white/20 text-white px-4 py-2 md:px-5 md:py-3 lg:px-6 lg:py-3.5 xl:px-8 xl:py-4 rounded-lg font-semibold text-sm md:text-base lg:text-lg hover:bg-white/30 transition-colors border border-white/30 min-w-[160px] lg:min-w-[180px]">
+            Get Free Consultation
+          </a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+</section>
+
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn') as NodeListOf<HTMLButtonElement>;
+  const videoItems = document.querySelectorAll('.video-item') as NodeListOf<HTMLElement>;
+
+  let currentCategory = 'all';
+
+  function filterVideos() {
+    videoItems.forEach(item => {
+      const category = item.dataset.category;
+      const show = currentCategory === 'all' || category === currentCategory;
+      item.style.display = show ? 'block' : 'none';
+    });
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentCategory = btn.dataset.category || 'all';
+      
+      // Update button styles
+      filterBtns.forEach(b => {
+        b.classList.remove('bg-amber-500', 'text-white', 'shadow-lg');
+        b.classList.add('border', 'border-gray-300', 'text-gray-700');
+      });
+      btn.classList.add('bg-amber-500', 'text-white', 'shadow-lg');
+      btn.classList.remove('border', 'border-gray-300', 'text-gray-700');
+      
+      filterVideos();
+    });
+  });
+</script>
+
+<style>
+  .aspect-video {
+    aspect-ratio: 16 / 9;
+  }
+  
+  @supports not (aspect-ratio: 16 / 9) {
+    .aspect-video {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+    }
+    
+    .aspect-video > * {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,94 @@
+---
+export interface Props {
+  videoId: string;
+  title?: string;
+  width?: number;
+  height?: number;
+  autoplay?: boolean;
+  mute?: boolean;
+  controls?: boolean;
+  loading?: "lazy" | "eager";
+  class?: string;
+}
+
+const {
+  videoId,
+  title = "YouTube Video",
+  width = 560,
+  height = 315,
+  autoplay = false,
+  mute = false,
+  controls = true,
+  loading = "lazy",
+  class: className = "",
+} = Astro.props;
+
+// Extract video ID from full YouTube URL if needed
+function extractVideoId(url: string): string {
+  if (url.length === 11) return url; // Already just the ID
+  
+  const patterns = [
+    /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/,
+    /^([a-zA-Z0-9_-]{11})$/
+  ];
+  
+  for (const pattern of patterns) {
+    const match = url.match(pattern);
+    if (match) return match[1];
+  }
+  
+  return url; // Return as-is if no pattern matches
+}
+
+const cleanVideoId = extractVideoId(videoId);
+
+// Build YouTube embed URL with parameters
+const params = new URLSearchParams();
+if (autoplay) params.append('autoplay', '1');
+if (mute) params.append('mute', '1');
+if (!controls) params.append('controls', '0');
+params.append('rel', '0'); // Don't show related videos
+params.append('modestbranding', '1'); // Minimal YouTube branding
+
+const embedUrl = `https://www.youtube.com/embed/${cleanVideoId}?${params.toString()}`;
+---
+
+<div class={`youtube-embed-container relative ${className}`}>
+  <div class="relative w-full video-aspect-ratio">
+    <iframe
+      src={embedUrl}
+      title={title}
+      class="absolute inset-0 w-full h-full border-0 rounded-lg"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+      loading={loading}
+    ></iframe>
+  </div>
+</div>
+
+<style>
+  .youtube-embed-container {
+    max-width: 100%;
+  }
+  
+  .video-aspect-ratio {
+    aspect-ratio: 16 / 9;
+  }
+  
+  /* Fallback for browsers that don't support aspect-ratio */
+  @supports not (aspect-ratio: 16 / 9) {
+    .video-aspect-ratio {
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    }
+  }
+  
+  .youtube-embed-container iframe {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  .youtube-embed-container:hover iframe {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+</style>

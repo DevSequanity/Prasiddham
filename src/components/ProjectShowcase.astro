@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import YouTubeEmbed from "./YouTubeEmbed.astro";
 import bedroomGray1 from "./../images/bedroom-gray/1.jpg";
 import bedroomGray2 from "./../images/bedroom-gray/2.jpg";
 import bedroomGray3 from "./../images/bedroom-gray/3.jpg";
@@ -94,6 +95,7 @@ const projects = [
     description:
       "A cozy and elegant bedroom designed with blush pink tones, perfect for relaxation and rejuvenation.",
     images: [bedroomPink1, bedroomPink2, bedroomPink3, bedroomPink4],
+    videos: ["KWH6syI3nhU"], // Example: Replace with your actual YouTube video IDs
     category: "Residential",
     tags: ["indoor", "pink", "elegant", "bedroom", "cozy"],
     stats: [
@@ -122,6 +124,7 @@ const projects = [
       bedroomGray5,
       bedroomGray6,
     ],
+    videos: [], // Add your YouTube video IDs here
     category: "Residential",
     tags: ["indoor", "gray", "brown", "elegant", "bedroom"],
     stats: [
@@ -154,6 +157,7 @@ const projects = [
       hall9,
       hall10,
     ],
+    videos: [], // Add your YouTube video IDs here
     category: "Residential",
     tags: [
       "indoor",
@@ -204,6 +208,7 @@ const projects = [
       kitchen9,
       kitchen10,
     ],
+    videos: [], // Add your YouTube video IDs here
     category: "Residential",
     tags: [
       "indoor",
@@ -269,6 +274,7 @@ const projects = [
       outsideOffice17,
       outsideOffice5,
     ],
+    videos: [], // Add your YouTube video IDs here
     category: "Commercial",
     tags: ["office", "functional", "ergonomic", "collaboration", "workstation"],
     stats: [
@@ -294,6 +300,7 @@ const projects = [
       outsideresto2,
       outsideresto3,
     ],
+    videos: [], // Add your YouTube video IDs here
     category: "Restaurant/Cafe",
     tags: ["restaurant", "cafe", "luxury", "relaxation", "hospitality"],
     stats: [
@@ -315,6 +322,7 @@ const projects = [
     description:
       "A comprehensive collection of luxury residential interiors featuring contemporary design elements, premium materials, and sophisticated color palettes. This project showcases various living spaces including bedrooms, living areas, and functional zones designed for modern lifestyle needs.",
     images: [v2_1, v2_2, v2_3, v2_4, v2_5, v2_6, v2_7, v2_8, v2_9, v2_10, v2_11, v2_12, v2_13, v2_14, v2_15, v2_16, v2_17, v2_18, v2_19, v2_20],
+    videos: [], // Add your YouTube video IDs here
     category: "Residential",
     tags: ["luxury", "residential", "modern", "premium", "contemporary", "elegant", "sophisticated", "bedroom", "living", "functional", "design"],
     stats: [
@@ -423,8 +431,13 @@ const allTags = [...new Set(projects.flatMap((p) => p.tags))];
               </button>
             </div>
 
-            <!-- Image Gallery -->
-            <div class="flex gap-3 md:gap-5 overflow-x-auto pb-2 mb-6">
+            <!-- Media Gallery (Images and Videos) -->
+            <div class="space-y-6 mb-6">
+              <!-- Images Section -->
+              {project.images.length > 0 && (
+                <div>
+                  <h4 class="text-lg font-semibold text-gray-900 mb-3">Project Images</h4>
+                  <div class="flex gap-3 md:gap-5 overflow-x-auto pb-2">
               {project.images.map((img) => (
                 <div class="relative group min-w-[220px] md:min-w-[300px] h-60 md:h-80 rounded-xl overflow-hidden shadow-lg border border-gray-100">
                   <Image src={img} alt={project.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -432,6 +445,30 @@ const allTags = [...new Set(projects.flatMap((p) => p.tags))];
                   <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                 </div>
               ))}
+                  </div>
+                </div>
+              )}
+              
+              <!-- Videos Section -->
+              {project.videos && project.videos.length > 0 && (
+                <div>
+                  <h4 class="text-lg font-semibold text-gray-900 mb-3">Project Videos</h4>
+                  <div class="grid gap-4">
+                    {project.videos.map((videoId) => (
+                      <div class="bg-gray-50 rounded-xl  shadow-lg border border-gray-200">
+                        <div class="max-w-2x2 mx-auto">
+                          <YouTubeEmbed 
+                            videoId={videoId} 
+                            title={`${project.title} - Video`}
+                            loading="lazy"
+                            class="rounded-lg overflow-hidden shadow-md"
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             <!-- Features -->
@@ -504,30 +541,87 @@ const allTags = [...new Set(projects.flatMap((p) => p.tags))];
     });
   });
 
+  // Modal state management
+  let currentOpenModal = null;
+
+  function openModal(id) {
+    const modal = document.getElementById(`modal-${id}`);
+    if (modal) {
+      // Close any currently open modal first
+      closeCurrentModal();
+      
+      // Open the new modal
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      currentOpenModal = id;
+      
+      // Add history state for back button support
+      const currentUrl = new URL(window.location);
+      currentUrl.searchParams.set('project', id);
+      window.history.pushState({ modalId: id }, '', currentUrl);
+    }
+  }
+
+  function closeCurrentModal() {
+    if (currentOpenModal) {
+      const modal = document.getElementById(`modal-${currentOpenModal}`);
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+      document.body.style.overflow = 'auto';
+      currentOpenModal = null;
+    }
+  }
+
+  function closeModalAndUpdateHistory() {
+    closeCurrentModal();
+    
+    // Update URL to remove project parameter
+    const currentUrl = new URL(window.location);
+    currentUrl.searchParams.delete('project');
+    window.history.pushState(null, '', currentUrl);
+  }
+
   // Modals
   projectCards.forEach(card => {
     card.addEventListener('click', () => {
       const id = card.dataset.projectId;
-      document.getElementById(`modal-${id}`).classList.remove('hidden');
-      document.getElementById(`modal-${id}`).classList.add('flex');
-      document.body.style.overflow = 'hidden';
+      openModal(id);
     });
   });
 
   document.querySelectorAll('.close-modal').forEach(btn => {
     btn.addEventListener('click', (e) => {
-      const id = btn.dataset.id;
-      const modal = document.getElementById(`modal-${id}`);
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-      document.body.style.overflow = 'auto';
+      e.preventDefault();
+      closeModalAndUpdateHistory();
     });
   });
 
+  // Handle browser back/forward buttons
+  window.addEventListener('popstate', (e) => {
+    if (e.state && e.state.modalId) {
+      // User navigated to a modal state
+      openModal(e.state.modalId);
+    } else {
+      // User navigated away from modal or to base page
+      closeCurrentModal();
+    }
+  });
+
+  // Handle initial page load with project parameter
+  window.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const projectId = urlParams.get('project');
+    if (projectId) {
+      openModal(projectId);
+    }
+  });
+
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      document.querySelectorAll('[id^="modal-"]').forEach(m => m.classList.add('hidden'));
-      document.body.style.overflow = 'auto';
+    if (e.key === 'Escape' && currentOpenModal) {
+      closeModalAndUpdateHistory();
     }
   });
 </script>
