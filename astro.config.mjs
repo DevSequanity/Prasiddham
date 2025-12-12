@@ -11,7 +11,7 @@ export default defineConfig({
   // For user/organization pages: site: 'https://username.github.io'
   // For project pages: site: 'https://username.github.io/repository-name'
   site: 'https://shyamraval.github.io',
-  base: '/Prasiddham', // Update this to match your repository name
+  base: '/', // Update this to match your repository name
   
   vite: {
     plugins: [tailwindcss()]
